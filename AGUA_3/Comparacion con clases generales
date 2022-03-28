@@ -1,0 +1,445 @@
+/**
+ *Colores para ver las diferencias de la clasificación de agua
+ * 
+ * color gris Clase 0 - no se clasifica en general o tranversal
+ * color rojo  Clase 1 - Solo se clasifica uso/agricultura en colección 3
+ * color amarillo Clase 2 - Similitudes en ambas colecciones 
+ * color azul Clase 3 - Solo se clasifica en transversal agricultura
+ *  * 
+*/ 
+
+var param = { 
+    'regionId':70201, // region Col 2, Col 3, Transversal
+    'pais': 'PERU',    //
+    'clasesUsoC3':[33], //clases  que utiliza como agricultura/uso colección 3 clasificación general
+    'version_input': 7, // Clasificación general Colección 3
+    'version_inputTA': 5, // versión de entrada del tranversal agricultura
+    'yearsVis':[1985,1990,2000,2010,2015,2020], // años para visualización
+    'year': 2005,     // AÑO
+};
+
+
+
+//var clases = ee.Image('users/saulcc5/BOLIVIA_COL3/integracion-bolivia/MapBiomas_Bolivia_col25_v01');
+var years = [
+    1985, 1986, 1987, 1988,
+    1989, 1990, 1991, 1992,
+    1993, 1994, 1995, 1996,
+    1997, 1998, 1999, 2000,
+    2001, 2002, 2003, 2004,
+    2005, 2006, 2007, 2008,
+    2009, 2010, 2011, 2012,
+    2013, 2014, 2015, 2016,
+    2017, 2018, 2019, 2020];    
+(function init(params) {
+  
+  var assets = {
+    grids: 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/cartas-mapbiomas-3',
+    regions: 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/clasificacion-regiones-3',
+    mosaics: 'projects/mapbiomas-raisg/MOSAICOS/',
+    InputsTAc: 'projects/mapbiomas-raisg/TRANSVERSALES/AGUA_3/clasificacion/',
+    InputsTA: 'projects/mapbiomas-raisg/TRANSVERSALES/AGUA_3/clasificacion-ft/',
+    InputsCol2: 'projects/mapbiomas-raisg/public/collection2/mapbiomas_raisg_panamazonia_collection2_integration_v2',
+    InputsCol3: 'projects/mapbiomas-raisg/COLECCION3/clasificacion/',
+    InputsCol3FT: 'projects/mapbiomas-raisg/COLECCION3/clasificacion-ft/'
+  };
+  
+  
+  
+  // Crear máscara con base en el vector de región y carta
+  var region = getRegion(
+    assets.regions, assets.grids, params.regionId, params.gridName);
+  
+  var country = region.vector.first().get('pais').getInfo()
+    .toUpperCase()
+    .replace('Ú', 'U')
+   .replace(' ', '_');
+
+
+  // Importar assets con base en la región
+  var assetsMosaics = [
+    //assets.mosaics + 'workspace-c2-v2', 
+    assets.mosaics + 'workspace-c3-v2'
+  ];
+  print('-----')
+  var mosaic = getMosaic(
+    assetsMosaics, params.regionId, params.variables, params.gridName);
+
+  print(
+    'NOTA. Los mosacios correspondientes a la', 
+    'colección 3 pueden no contener las bandas',
+    'completas y por lo tanto la visualización en', 
+    'el mapa puede estar incompleta.',
+    'Este problema se solucionará de forma automática',
+    'una vez que los mosaicos sean procesados', 
+    'y almecenados.'
+  );
+  
+  // Generar el análisis de variables y la clasificación
+  var regionId = params.regionId;
+  
+  if(params.gridName !== undefined && params.gridName !== '')
+    regionId = regionId + '-' + params.gridName;
+
+  
+  // Clasificacion transversal
+  var classificationTrans;
+  var classificationTransCol3;
+  
+  // Cargamos la colección 2 
+  var classificationCol2 = ee.Image(assets.InputsCol2).clip(region.vector)
+  
+  // cargamos el tranversal 
+  //projects/mapbiomas-raisg/TRANSVERSALES/AGUA_3/clasificacion-ft/BOLIVIA-21002-DT-5
+  
+  var filename = country + '-' + params.regionId + '-DT-' + params.version_inputTA;
+  
+  var imageId = assets.InputsTA + filename;
+  if (params.version_inputTA===1 ||params.version_inputTA===3){
+    imageId = assets.InputsTAc + filename;
+  }
+  classificationTrans =ee.Image(imageId)
+  print('Transversal',classificationTrans)
+  // cargamos la colección 3
+  filename = country + '-' + regionId + '-' + params.version_input,
+  imageId = assets.InputsCol3FT + filename;
+  if (params.version_input===1 ||params.version_input===1){
+     imageId = assets.InputsCol3 + filename;
+  }
+  classificationTransCol3 =ee.Image(imageId)
+  
+  
+  
+  // Enviar resultados al mapa
+  var rgbVariables = ['swir1_median', 'nir_median', 'red_median'];
+
+  var rgbMosaic = getMosaic(
+    assetsMosaics, params.regionId, rgbVariables, params.gridName,
+    region.vector
+  );
+  
+  addLayersToMap(classificationTrans, classificationCol2,classificationTransCol3, rgbMosaic, params.yearsVis, region.vector);
+  print(
+    'NOTA. La visualización de las clasificaciones', 
+    'puede tomar tiempo en generarse, especialmente',
+    'en regiones más grandes.'
+  );  
+
+  
+  //getStats(classified, region.vector);
+
+})(param);  
+
+
+/**
+ * ----------------------------------------------------------------------------------------------
+ * FUNCIONALIDADES
+ * A continuación se definen las funcionalidades que se usan en la aplicación.
+ * Estas features se inyectan en la función init() que las ejecuta y genera los
+ * resultados.
+ * ----------------------------------------------------------------------------------------------
+ */
+
+
+
+/**
+ * Constantes globales
+ */
+function ALL_YEARS() {
+  return [
+    1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+    1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 
+    2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
+    2018, 2019, 2020
+  ];
+}
+
+function PALETTE() {
+  return [
+    'ffffff', 'FF0000', 'e2c539', '006400', '00ff00', '687537', '76a5af',
+    '29eee4', '77a605', '935132', 'bbfcac', '45c2a5', 'b8af4f', 'f1c232', 
+    'ffffb2', 'ffd966', 'f6b26b', 'f99f40', 'e974ed', 'd5a6bd', 'c27ba0',
+    'fff3bf', 'ea9999', 'dd7e6b', 'aa0000', 'ff99ff', '0000ff', 'd5d5e5',
+    'dd497f', 'b2ae7c', 'af2a2a', '8a2be2', '968c46', '0000ff', '4fd3ff'
+  ];
+}
+
+
+/**
+ * Función para asignar una versión arbitraria
+ * Este campo se asigna y luego se usa como referencia para la conversión a raster
+ */
+function setVersion(item) { return item.set('version', 1) }
+
+
+
+/**
+ * Función para generar region de interés (ROI) con base en
+ * las región de clasificación o una grilla millonésima contenida en ella
+ */
+function getRegion(regionPath, gridPath, regionId, gridName){
+  
+  var region = ee.FeatureCollection(regionPath)
+        .filterMetadata("id_regionC", "equals", regionId);
+  
+  if(gridName && gridName !== '') {
+    var grid = ee.FeatureCollection(gridPath)
+      .filterMetadata("name", "equals", gridName)
+      .first();
+      
+    grid = grid.set('pais', region.first().get('pais'));
+    
+    region = ee.FeatureCollection(ee.Feature(grid));
+  } 
+  else region = region;
+  
+  var regionMask = region
+    .map(setVersion)
+    .reduceToImage(['version'], ee.Reducer.first());
+    
+  return {
+    vector: region,
+    rasterMask: regionMask
+  };
+
+}
+
+
+/**
+ * Función para filtrar mosaicos
+ * Permite filtrar los mosaicos por codigo de región y grilla 250.000,
+ * También gestiona la selección de índices que serán utilizados para generar los
+ * puntos de entrenamiento.
+ */
+function getMosaic(paths, regionId, variables, gridName,regionVector) {
+  
+  // Importar datos de altitud
+  var altitude = ee.Image('JAXA/ALOS/AW3D30_V1_1')
+    .select('AVE')
+    .rename('altitude');
+      
+  var slope = ee.Terrain.slope(altitude).int8()
+    .rename('slope');
+  
+   /**
+   * Hand
+   */
+  //-----------------------------------------------------------------------------
+    var hand30_100 = ee.ImageCollection('users/gena/global-hand/hand-100') 
+    var srtm = ee.Image("USGS/SRTMGL1_003")
+    var hand30_1000 =  ee.Image("users/gena/GlobalHAND/30m/hand-1000")
+    var hand90_1000 = ee.Image("users/gena/GlobalHAND/90m-global/hand-1000")
+    var hand30_5000 = ee.Image("users/gena/GlobalHAND/30m/hand-5000")
+    var fa = ee.Image("users/gena/GlobalHAND/90m-global/fa")
+    var jrc = ee.Image("JRC/GSW1_0/GlobalSurfaceWater")
+    var HS_fa = ee.Image("WWF/HydroSHEDS/15ACC")
+    var HS_fa30 = ee.Image("WWF/HydroSHEDS/30ACC")
+    var demUk = ee.Image("users/gena/HAND/test_uk_DSM")
+    
+    // smoothen HAND a bit, scale varies a little in the tiles
+    hand30_100 = hand30_100.mosaic().focal_mean(0.1) 
+    
+    // potential water (valleys)
+    var thresholds = [0,1,2,5,10]
+    var HANDm = ee.List([])
+    thresholds.map(function(th) {
+      var water = hand30_100.lte(th)
+        .focal_max(1)
+        .focal_mode(2, 'circle', 'pixels', 5).mask(swbdMask)
+        
+      HANDm = HANDm.add(water.mask(water).set('hand', 'water_HAND_<_' + th + 'm'))
+    });
+    
+    // exclude SWBD water
+    var swbd = ee.Image('MODIS/MOD44W/MOD44W_005_2000_02_24').select('water_mask')
+    Map.addLayer(swbd, {}, 'swbd mask', false)
+    var swbdMask = swbd.unmask().not().focal_median(1)//.focal_max(5); // .add(0.2);
+    
+    // water_hand	water (HAND < 5m)
+    var HAND_water = ee.ImageCollection(HANDm)
+    
+    // exports.
+    hand30_100  = hand30_100.rename('hand30_100');
+    hand30_1000 = hand30_1000.rename('hand30_1000');
+    hand30_5000 = hand30_5000.rename('hand30_5000');
+    hand90_1000 = hand90_1000.rename('hand90_1000');
+    HAND_water  = HAND_water.toBands()
+      .rename([
+        'water_HAND_0m', 'water_HAND_1m', 'water_HAND_2m', 
+        'water_HAND_5m', 'water_HAND_10m']);
+            
+    var Hand_bands =  hand30_100
+      .addBands(hand30_1000)
+      .addBands(hand30_5000)
+      .addBands(hand90_1000)
+      .addBands(HAND_water);
+                                
+  
+  /**
+   * Latitud Longitud
+   */
+  //-----------------------------------------------------------------------------
+  var longLat = ee.Image.pixelLonLat()
+  
+  /**
+   * ShadeMask2
+   */
+  //-----------------------------------------------------------------------------
+  var landsat = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR")
+                .filterBounds(regionVector)
+  
+  var shade_mask2 = landsat.map(function(image){
+    var Terrain = srtm;
+    var sunAzimuth = image.get('SOLAR_AZIMUTH_ANGLE');
+    var sunZenith = image.get('SOLAR_ZENITH_ANGLE');
+    
+    var sunElevation = ee.Number(90).subtract(sunZenith);
+  
+    var hillShadow = ee.Terrain.hillShadow(Terrain, sunAzimuth , sunZenith, 300, true);
+    var hillShade = ee.Terrain.hillshade(Terrain, sunAzimuth , sunElevation);
+    var hillShadow_mean = hillShadow.reduceNeighborhood({
+      reducer: ee.Reducer.mean(),
+      kernel: ee.Kernel.square(30, 'meters'),
+    });
+    var shadeMask2 = ee.Image(0).where(hillShadow_mean.lte(0.9).or(hillShade.lte(120)),1)  
+                      .toUint8()
+                      .rename('shade_mask2');
+  
+    return shadeMask2.select([0], ['shade_mask2']);
+  })
+  
+  shade_mask2 = shade_mask2.median()
+  
+  /**
+   * slppost
+   */
+  //-----------------------------------------------------------------------------
+  var slppost = ee.Image("projects/mapbiomas-raisg/MOSAICOS/slppost2_30_v1").rename('slppost');
+  
+  //-----------------------------------------------------------------------------
+  
+  // Gestionar mosaicos Landsat
+  var mosaicRegion = regionId.toString().slice(0, 3);
+  
+  var mosaics = paths.map( function(path) {
+    
+    var mosaic = ee.ImageCollection(path)
+      .filterMetadata('region_code', 'equals', mosaicRegion)
+      .map(function(image) {
+        var index = ee.String(image.get('system:index')).slice(0, -3);
+        return image.set('index', index);
+      });
+    
+    if(gridName && gridName !== '')
+      mosaic = mosaic
+        .filterMetadata('grid_name', 'equals', gridName);
+    else
+      mosaic = mosaic;
+    
+    if(mosaic.size().getInfo() !== 0) return mosaic;
+    
+  });
+  
+  
+  mosaics = mosaics.filter( function(m) { return m !== undefined });
+    
+  var joinedMosaics = mosaics[0];
+  
+
+  if(mosaics.length === 2) {
+
+    var join = ee.Join.inner(),
+        joiner = ee.Filter.equals({
+          leftField: 'index',
+          rightField: 'index'
+        });
+        
+    var joinedCollection = join.apply(mosaics[0], mosaics[1], joiner);
+    
+    joinedMosaics = ee.ImageCollection(
+      joinedCollection.map( function(feature) {
+        var primary = feature.get('primary'),
+            secondary = feature.get('secondary');
+            
+        return ee.Image.cat(primary, secondary, altitude, slope, Hand_bands, slppost);
+      })
+    );
+  }
+  
+  // seleccionar variables
+  print('----')
+  return joinedMosaics;
+
+}
+
+/**
+ * Función para enviar visualización al mapa
+ * 
+ */
+function addLayersToMap(imageTrans,imageC2, imageC3,mosaic, years, region) {
+  
+  var Diferencias = imageTrans.multiply(0)
+  var Col3 = imageC3.multiply(0)
+  param.clasesUsoC3.forEach(function(Class){
+     Col3 = Col3.where(imageC3.eq(Class),1)
+  })
+  
+  Diferencias = Diferencias.where(Col3.eq(1).and(imageTrans.neq(33)),1)
+  Diferencias = Diferencias.where(Col3.eq(1).and(imageTrans.eq(33)),2)
+  Diferencias = Diferencias.where(Col3.neq(1).and(imageTrans.eq(33)),3)
+  //Diferencias = Diferencias.mask(Diferencias.gt(0))
+  var Palet = ['#cccccc','#ff0000','#c7f50d','#0000ff']
+  // var Palet = ['#000000','#ff0000','#0a11ff','#fbff08']
+  
+ 
+  years.forEach(function(year) {
+    var filtered = mosaic.filterMetadata('year', 'equals', year)
+      .mosaic()
+      .clip(region);
+      
+    Map.addLayer(
+      filtered,
+      {
+        bands: ['swir1_median', 'nir_median', 'red_median'],
+        gain: [0.08, 0.06, 0.2]
+      },
+      'MOSAICO ' + year.toString(), false
+    );
+    
+    if (year<2020){
+      Map.addLayer(imageC2.select('classification_' + year.toString()),
+        {
+          min: 0,
+          max: 34,
+          palette: PALETTE()
+        },
+        'CLASIFICACION C2 ' + year.toString(), false
+      );
+    }
+    Map.addLayer(imageC3.select('classification_' + year.toString()),
+      {
+        min: 0,
+        max: 34,
+        palette: PALETTE()
+      },
+      'CLASIFICACION C3 ' + year.toString(), false 
+    );
+    Map.addLayer(imageTrans.select('classification_' + year.toString()),
+      {
+        min: 0,
+        max: 34,
+        palette: PALETTE()
+      },
+      'T. Agua ' + year.toString() + ' '+param.regionId, false
+    );
+    
+    Map.addLayer(Diferencias.select('classification_' + year.toString()),
+      {
+        min: 0,
+        max: 3,
+        palette: Palet
+      },
+      'T. Agua dif col3-' + year.toString() + ' '+param.regionId, false
+    );
+  });
+}

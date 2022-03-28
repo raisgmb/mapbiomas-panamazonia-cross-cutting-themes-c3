@@ -1,0 +1,895 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var Mustras_adicionales_01 = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.65826958107479, -18.81487028753453],
+                  [-64.65826958107479, -18.81487028753453],
+                  [-64.65826958107479, -18.81487028753453],
+                  [-64.65826958107479, -18.81487028753453]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.66114490913876, -18.814423442871867],
+                  [-64.66114490913876, -18.814423442871867],
+                  [-64.66114490913876, -18.814423442871867],
+                  [-64.66114490913876, -18.814423442871867]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.65552462148516, -18.810562744684866],
+                  [-64.65552462148516, -18.81641238786353],
+                  [-64.64891565847246, -18.81641238786353],
+                  [-64.64891565847246, -18.810562744684866]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.66848505544512, -18.811375207293228],
+                  [-64.66848505544512, -18.814706262954772],
+                  [-64.66402185964434, -18.814706262954772],
+                  [-64.66402185964434, -18.811375207293228]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.67303408193438, -18.819418375343847],
+                  [-64.67303408193438, -18.822180586723174],
+                  [-64.66831339406816, -18.822180586723174],
+                  [-64.66831339406816, -18.819418375343847]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.6623052458748, -18.82234306833203],
+                  [-64.6623052458748, -18.82356167539198],
+                  [-64.65955866384355, -18.82356167539198],
+                  [-64.65955866384355, -18.82234306833203]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "5"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.67432154226152, -18.816331144212796],
+                  [-64.67432154226152, -18.816737362073948],
+                  [-64.67303408193438, -18.816737362073948],
+                  [-64.67303408193438, -18.816331144212796]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "6"
+            })]),
+    Mustras_adicionales_02 = 
+    /* color: #98ff00 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.64247835683672, -18.816168656793536],
+                  [-64.64247835683672, -18.821936864015434],
+                  [-64.63818682241289, -18.821936864015434],
+                  [-64.63818682241289, -18.816168656793536]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.63827265310137, -18.811700191237712],
+                  [-64.63827265310137, -18.814218795515707],
+                  [-64.63209284353105, -18.814218795515707],
+                  [-64.63209284353105, -18.811700191237712]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.62883127736895, -18.818768436658747],
+                  [-64.62883127736895, -18.820230795166843],
+                  [-64.62659967946855, -18.820230795166843],
+                  [-64.62659967946855, -18.818768436658747]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.65106142568438, -18.82380539574377],
+                  [-64.65106142568438, -18.824455314954104],
+                  [-64.64857233571855, -18.824455314954104],
+                  [-64.64857233571855, -18.82380539574377]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.63638437795488, -18.822586790450796],
+                  [-64.63638437795488, -18.823886635782497],
+                  [-64.63209284353105, -18.823886635782497],
+                  [-64.63209284353105, -18.822586790450796]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "4"
+            })]),
+    Mustras_adicionales_03 = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-61.81018341930901, 7.8258215789057335],
+                  [-61.77859772594964, 7.835004859297531],
+                  [-61.770701302609794, 7.852010399110267],
+                  [-61.78134430798089, 7.86051290809632],
+                  [-61.798167122922294, 7.850649981519776],
+                  [-61.806406869016044, 7.845548375894414],
+                  [-61.81773651989495, 7.840446707676397]]]),
+            {
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-61.80194367321526, 7.889080061311317],
+                  [-61.800913704953544, 7.933967312079818],
+                  [-61.83490265759026, 7.919345486937689],
+                  [-61.85275544079339, 7.9064234419329535],
+                  [-61.85721863659417, 7.897241742908134],
+                  [-61.822886361203544, 7.8918006397520335]]]),
+            {
+              "system:index": "1"
+            })]),
+    geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-65.04576210575466, -17.59757946239],
+          [-65.04576210575466, -19.20291117519659],
+          [-64.27671913700466, -19.20291117519659],
+          [-64.27671913700466, -17.59757946239]]], null, false),
+    geometry2 = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
+        [[[-66.44151224985411, -18.556922933071423],
+          [-66.22178568735411, -18.713078156360663],
+          [-66.04600443735411, -18.661042367845152],
+          [-65.94712748422911, -18.42147269708944],
+          [-66.17784037485411, -18.17113080054236],
+          [-66.34263529672911, -18.223315153197895],
+          [-66.39756693735411, -18.317207540560336]]]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+/** 
+ * PASO 4: CLASIFICACIÓN PRELIMINAR Y AN´ÁLISIS DE IMPORTANCIA DE VARIABLES v3.2 
+ * SEPTIEMBRE 2020
+ * DOCUMENTACIÓN: https://docs.google.com/document/d/1V1_kj6idnTzLslsXFC11EbU-qGcwhsHBWQTgRLR9QEw/edit#
+ * M3v2 - toma en cuenta los mosaicos de unidos de la colección 3
+ * MA - que tiene la capacidad de tomar muestras adicionales
+ * estas muestras también permite modificar el periodo de tiempo 
+ * Mascara - Utiliza geometrias guardadas en asset o dibujadas en GEE para definir un área nueva 
+ * ----------------------------------------------------------------------------------------------
+ */  
+  
+/**  
+ * PARAMETROS DE USUARIO:
+ * Ajuste los parámetros a continuacón para generar la imagen de pixeles estables correspondiente
+ * M3v2 - mosaicos migrados a una sola colección..
+ * ----------------------------------------------------------------------------------------------
+ */
+var GeometriaMascara01 = ee.FeatureCollection([]) //  esta geometria permite enmascarar el proceso de clasificación 
+var GeometriaMascara02 = ee.FeatureCollection([])
+// Solamente colocar la dirección completa del asset de geometria ej. ee.FeatureCollection('miasset/geomtria')
+
+
+var param = {
+  regionId: 20601,
+  gridName: '',
+  trees: 50,               // Numero de Arboles
+  tileScale:8,             // Si sale problemas de memoria subir a 2, 3 o 4
+  NoMosaicYear:[],         // En este apartado especificar qué años no se encuentran mosaicos 
+  variables: [
+    "blue_median","green_dry","green_median","red_dry","red_median",
+    "nir_dry", "nir_median", "nir_wet", "swir1_dry", "swir1_median",
+    "swir1_wet", "swir2_dry", "swir2_median", "swir2_wet", "ndwi_gao_wet",
+    "cai_wet_min", "green_dry_qmo", "green_wet_min", "green_wet_qmo", "ndwi_gao_dry_min",
+    "ndwi_gao_wet_max", "ndwi_gao_wet_min", "ndwi_gao_wet_qmo", "nir_dry_qmo", "nir_wet_qmo",
+    "red_dry_max", "red_dry_min", "red_dry_qmo", "red_wet_max", "swir1_dry_max",
+    "swir1_dry_qmo", "swir1_wet_max", "swir1_wet_min", "swir1_wet_qmo", "swir2_dry_min",
+    "swir2_dry_qmo", "swir2_wet_max", "swir2_wet_qmo"
+  ],
+  Altura:0, //0 no adiciona banda Altura  -  1 Adiciona banda altura 
+  Pendiente:0, //0 no adiciona Banda Pendiente - 1 Adiciona banda de pendiente
+  additionalSamples: {
+    //polygons: [Mustras_adicionales_01,Mustras_adicionales_02 ],  // (este es un ejemplo)
+    polygons: [ ], // este parámetro recibe las geometrias de muestras adicionales que pueden ser agregadas en un periodo de tiempo personalizado.
+    Periodo: [], // este parámetro se no se modifica, ya que en el script edita automáticamente
+    classes: [ 1 ], // este parámetro toma en cuenta la cantidad de clases para el sorte de puntos.
+    points: [500] // este parametro de define la cantidad de puntos que va a generar a partir de todas las geometrias de muestras adicionales
+  },
+  //MascaraAOI : [geometry],
+  MascaraAOI : [geometry2],   // Incluir las geometrias subidas a un asset o dibujadas dentro del  GEE ej. MascaraAOI : [GeometriaMascara01]
+                     // esto para deliminar en una nueva área de la región 
+  yearsPreview: [ 2018 ], // parametro de para visualizar un año en particulas, sin embargo no se recomienda visualizar el resultado, por que consume  bastante memoria e incluso genera un error.
+  driveFolder: 'RF-PRELIMINAR-CLASSIFICATION',
+  samplesVersion: 1,
+  outputVersion: 1,
+  VersionEstable: 1
+};
+
+var YearRun = 1985;
+
+var regionMask;
+var geom;
+
+
+
+ 
+/**
+ * ----------------------------------------------------------------------------------------------
+ * INICIALIZACIÓN DE LA APLICACsampling_03IÓN
+ * Self invoked expresion que ejecuta el paso 4 de la metodología
+ * ----------------------------------------------------------------------------------------------
+ */
+
+(function init(param) {
+  
+  var assets = {
+    grids: 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/cartas-mapbiomas-3',
+    regions: 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/clasificacion-regiones-3',
+    mosaics: 'projects/mapbiomas-raisg/MOSAICOS/',
+    //trainingSamples: 'projects/mapbiomas-raisg/MUESTRAS/COLECCION3/PUNTOS_ESTABLES/',
+    trainingSamples: 'projects/mapbiomas-raisg/MUESTRAS/COLECCION3/TRANSVERSALES/AGRICULTURA/',
+    outputs: 'projects/mapbiomas-raisg/MUESTRAS/COLECCION3/PUNTOS_ESTABLES/'
+  };
+  
+  
+  // Crear máscara con base en el vector de región y carta
+  
+  var region = getRegion(
+    assets.regions, assets.grids, param.regionId, param.gridName);
+  
+  regionMask = region
+
+
+  var country = region.vector.first().get('pais').getInfo()
+    .toUpperCase()
+    .replace('Ú', 'U')
+    .replace(' ', '_');
+    
+  
+  
+
+  // Importar assets con base en la región
+  var mosaicPath = assets.mosaics;
+  var assetsMosaics = [ 
+     //mosaicPath + 'workspace-c2-v2',
+     mosaicPath + 'workspace-c3-v2'
+  ];
+  
+  //var mosaic = getMosaic(
+  //  assetsMosaics, param.regionId, param.variables, param.gridName);
+  var RegMos = parseInt(param.regionId/100)
+  RegMos = RegMos.toString();
+  
+  var mosaic = ee.ImageCollection(assetsMosaics[0])
+              .filterMetadata('region_code','equals',RegMos)
+              .filterBounds(region.vector)
+              //.mosaic()
+  var mosaic2 = ee.ImageCollection([])
+              //.filterMetadata('region_code','equals',RegMos)
+              //.filterBounds(region.vector)
+              //.mosaic()
+  
+  // Generar el análisis de variables y la clasificación
+  var regionId = param.regionId;
+  
+  if(param.gridName && param.gridName !== '')
+    regionId = regionId + '-' + param.gridName;
+
+  var trainingSamplesPath = assets.trainingSamples + country + '/samples-' + 
+    country + '-' + regionId;
+  
+  
+  // Generar la clasificación
+  var classification = randomForestsClassify(
+    trainingSamplesPath, param.additionalSamples, mosaic,mosaic2, param.trees, region);
+  
+  var classified = classification.coverImage
+    .set({
+      code_region: param.regionId,
+      pais: country,
+      version: param.outputVersion,
+      RFtrees: param.trees,
+      samples_version: param.samplesVersion,
+      descripcion: 'clasificacion-v1',
+      paso: 'P04'
+    });
+  
+  var importance = classification.importance;
+  
+
+  // Enviar resultados al mapa
+  var rgbVariables = ['swir1_median', 'nir_median', 'red_median'];
+
+  //var rgbMosaic = getMosaic(
+  //  assetsMosaics, param.regionId, rgbVariables, param.gridName,
+  //  region.vector
+  //);
+  var rgbMosaic = mosaic.select(rgbVariables)
+  
+  var regionMascara=ee.FeatureCollection([]);
+  if ( param.MascaraAOI.length>0){
+     param.MascaraAOI.forEach(function(Elemento){
+      regionMascara = regionMascara.merge(Elemento)
+    })  
+    //region = reg
+    classified = classified.clip(regionMascara)
+    classified = classified.mask(classified.gt(0))
+    Map.addLayer(regionMascara,{},'Nueva máscara (AOI)',true)
+  } 
+  var PixEstable =  ee.Image('projects/mapbiomas-raisg/MUESTRAS/COLECCION3/MUESTRAS_ESTABLES/muestras-estables/ME-'+country+'-'+param.regionId+'-'+param.VersionEstable)
+  
+  addLayersToMap(classified,PixEstable, rgbMosaic, param.yearsPreview, region.vector);
+
+
+  // Exportar assets a GEE y Google Drive
+  var basePath = 'projects/mapbiomas-raisg/TRANSVERSALES/AGRICULTURA_3/clasificacion/',
+      filename = country + '-' + regionId + '-' + param.outputVersion,
+      imageId = basePath + filename;
+  
+  
+  exportImage(
+    classified, filename, imageId, region.vector, param.driveFolder);
+  
+  exportFeatures(
+    importance, 'IMPORTANCE-TABLE-' + filename+'-TA', param.driveFolder);
+    
+
+  // Mostrar información en la consola
+  print("Mosaicos", mosaic);
+  print("Clasificación", classification.coverImage);
+
+})(param);  
+
+
+
+
+
+/**
+ * ----------------------------------------------------------------------------------------------
+ * FUNCIONALIDADES
+ * A continuación se definen las funcionalidades que se usan en la aplicación.
+ * Estas features se inyectan en la función init() que las ejecuta y genera los
+ * resultados.
+ * ----------------------------------------------------------------------------------------------
+ */
+
+
+
+/**
+ * Constantes globales
+ */
+function ALL_YEARS() {
+  return [
+    1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+    1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 
+    2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
+    2018,2019,2020
+  ];
+}
+
+
+
+/**
+ * Función para asignar una versión arbitraria
+ * Este campo se asigna y luego se usa como referencia para la conversión a raster
+ */
+function setVersion(item) { return item.set('version', 1) }
+
+
+
+/**
+ * Función para generar region de interés (ROI) con base en
+ * las región de clasificación o una grilla millonésima contenida en ella
+ */
+function getRegion(regionPath, gridPath, regionId, gridName){
+  
+  var region = ee.FeatureCollection(regionPath)
+        .filterMetadata("id_regionC", "equals", regionId);
+  
+  if(gridName && gridName !== '') {
+    var grid = ee.FeatureCollection(gridPath)
+      .filterMetadata("name", "equals", gridName)
+      .first();
+      
+    grid = grid.set('pais', region.first().get('pais'));
+    
+    region = ee.FeatureCollection(ee.Feature(grid));
+  } 
+  else region = region;
+  
+  var regionMask01 = region
+    .map(setVersion)
+    .reduceToImage(['version'], ee.Reducer.first());
+    
+  return {
+    vector: region,
+    rasterMask: regionMask01
+  };
+
+}
+
+
+ 
+
+/**
+ * Función para filtrar mosaicos
+ * Permite filtrar los mosaicos por codigo de región y grilla 250.000,
+ * También gestiona la selección de índices que serán utilizados para generar los
+ * puntos de entrenamiento.
+ */
+function getMosaic(paths, regionId, variables, gridName,regionVector) {
+  
+  
+
+}
+/**
+ * Función para tomar muestras complementarias o muestras de clases nuevas
+ */
+function resampleCover(mosaic, additionalSamples) {
+  
+  var polygons = additionalSamples.polygons,
+      classIds = additionalSamples.classes,
+      points = additionalSamples.points,
+      newSamples = [];
+  var cont=0;
+  polygons.forEach(function(polygon, i) {
+    polygon = polygon.filterBounds(regionMask.vector)
+    var newSample = mosaic.sample({
+      numPixels: points[i],
+      region: polygon,
+      scale: 30,
+      projection: 'EPSG:4326',
+      seed: 1,
+      geometries: true,
+      tileScale:param.tileScale
+    })
+    .map(function(item) { return item.set('reference', classIds[ i ]) });
+    if (YearRun >= additionalSamples.Periodo[cont][0] && YearRun <= additionalSamples.Periodo[cont][1]){
+       newSamples.push(newSample);
+    }
+    cont = cont+1
+  });
+  
+  return ee.FeatureCollection(newSamples).flatten();
+
+}
+/**
+ * Función para generar clasificación 
+ */
+
+
+function randomForestsClassify(
+  trainingSamplesPath, additionalSamples, mosaic, mosaic2, trees, region) {
+  
+  var getokYear = function(Y){
+    var okY = Y;
+    var Flag =false;
+    // primero pensamos en el año 1985 
+    //print(param.NoMosaicYear.indexOf(okY))
+    while (param.NoMosaicYear.indexOf(okY)>=0){
+      okY = okY+1
+    }
+    if (param.NoMosaicYear.indexOf(okY)===-1 && okY<=2020){
+      Flag = true;
+    }
+    if (okY>=2020 && Flag===false){
+      okY = 2020
+      while (Flag===false && param.NoMosaicYear.indexOf(okY)>=0){
+        okY = okY-1
+      } 
+    }
+    return  okY
+  }
+  
+  var YearFix
+
+  var years = ALL_YEARS(),
+      variablesImportance = ee.FeatureCollection([]),
+      classified = ee.Image(0);
+
+  var c=0;
+  var geo;
+  additionalSamples.polygons.forEach(function(Ele){
+    geo = Ele.getInfo()
+    additionalSamples.Periodo[c] =[geo.features[0].properties.PIni,geo.features[0].properties.PFin] 
+    c = c+1;
+    print('Geometria '+c+' - Periodo',geo.features[0].properties.PIni+'-'+geo.features[0].properties.PFin)
+  })
+  //print(additionalSamples.Periodo)
+  years.forEach(function(year){
+    YearFix = getokYear(year);
+    var yearMosaic = mosaic
+      .filterMetadata('year', 'equals', YearFix)
+      .mosaic();
+    
+   
+    
+    //yearMosaic = yearMosaic.addBands(yearMosaic2)
+    yearMosaic = yearMosaic.select(param.variables)
+    yearMosaic = yearMosaic.clip(region.vector)
+    
+     // Adicionando Elevación y pendiente..
+    
+    var terrain = ee.call('Terrain', ee.Image('USGS/SRTMGL1_003'));
+    terrain = terrain.clip(region.vector);
+    var elevacion = terrain.select('elevation').rename('elevacion');
+    var pendiente = terrain.select('slope').rename('pendiente');
+    
+    if(param.variables.length > 0) yearMosaic = yearMosaic.select(param.variables);
+    
+    
+    
+    if (param.Altura > 0){
+      yearMosaic = yearMosaic.addBands(elevacion)
+    }
+    if (param.Pendiente > 0){
+      yearMosaic = yearMosaic.addBands(pendiente)
+    }
+    
+    var bands = yearMosaic.bandNames();
+    var contained = bands.containsAll(ee.List(param.variables));
+    
+    
+    var nBands = bands.size();
+    
+    
+    /*
+    var yearTrainingSamples = ee.FeatureCollection(
+      ee.Algorithms.If(
+        ee.Algorithms.IsEqual(nBands, 0),
+        null,
+        ee.FeatureCollection(
+          trainingSamplesPath + '-' + YearFix + '-' + 'p03' + '-' + '1')
+      )
+    );
+    */
+    var yearTrainingSamples = ee.FeatureCollection(
+      ee.Algorithms.If(
+        contained,
+        ee.FeatureCollection(
+          trainingSamplesPath + '-' + YearFix + '-' + 'p03' + '-' + param.samplesVersion),
+          
+        null
+      )
+    );
+    
+    // Identificar numero de clases en las muestras
+    /*
+    var nClasSample = yearTrainingSamples
+      .reduceColumns(ee.Reducer.toList(), ['reference'])
+      .get('list');
+    */
+    var nClasSample = ee.List(
+      ee.Algorithms.If(
+        contained,
+        yearTrainingSamples
+          .reduceColumns(ee.Reducer.toList(), ['reference'])
+          .get('list'),
+        null
+      )
+    );
+      
+    nClasSample = ee.List(nClasSample)
+      .reduce(ee.Reducer.countDistinct());
+    
+      
+    // Incluir muestras complementarias
+    if(additionalSamples.polygons.length > 0){
+      var Geo,PIni,PFin;
+      
+      var Feature = ee.FeatureCollection([])
+      c=0;
+      additionalSamples.polygons.forEach(function(Ele){
+        PIni = additionalSamples.Periodo[c][0];
+        PFin = additionalSamples.Periodo[c][1];
+        if (PIni>= YearFix && PFin<=YearFix){
+          Feature = Feature.merge(Ele)
+        }
+        c=c+1;
+      })
+      //var insidePolygons = ee.FeatureCollection(additionalSamples.polygons)
+      
+      var insidePolygons = Feature//ee.FeatureCollection(Feature)
+        //.map(setVersion)
+        .reduceToImage(['reference'], ee.Reducer.first());
+      
+      var outsidePolygons = insidePolygons.eq(1).mask().eq(0).selfMask();
+      outsidePolygons = region.rasterMask.updateMask(outsidePolygons);
+      /*
+      var outsideVector = ee.FeatureCollection(
+        outsidePolygons.reduceToVectors({
+          reducer: ee.Reducer.countEvery(), 
+          geometry: region.vector, 
+          scale: 30,
+          maxPixels: 1e8
+        })
+      );*/ 
+      var outsideVector = outsidePolygons.reduceToVectors({
+        reducer: ee.Reducer.countEvery(),
+        //geometry: region.geometry().bounds(),
+        geometry: region.vector, 
+        scale: 30,
+        maxPixels: 1e13
+      });
+      
+      YearRun = YearFix;
+      var newSamples = resampleCover(yearMosaic, additionalSamples);
+      
+      //yearTrainingSamples = yearTrainingSamples.filterBounds(outsideVector)
+      yearTrainingSamples = yearTrainingSamples.filterBounds(region.vector)
+        .merge(newSamples);
+      
+      //print(yearTrainingSamples.limit(100))
+      //Map.addLayer(newSamples,{},'Puntos adicionales'+YearFix,false)
+      //print(YearFix,newSamples.size())
+    }
+
+
+    // Definir clasificador y generar tablas de importancia
+    var classifier = ee.Classifier.smileRandomForest({
+        numberOfTrees: trees, 
+        variablesPerSplit: 1
+    });
+    
+    classifier = ee.Classifier(
+      ee.Algorithms.If(
+        ee.Algorithms.IsEqual(nBands, 0),
+        null, 
+        ee.Algorithms.If(
+          // solución al problema 'only one class'
+          ee.Algorithms.IsEqual(nClasSample, 1),
+          null,
+          classifier.train(yearTrainingSamples, 'reference', bands)
+        )
+      )
+    );
+
+    var explainer = ee.Dictionary(
+      ee.Algorithms.If(
+        ee.Algorithms.IsEqual(nBands, 0) ,
+        null,ee.Algorithms.If(
+        ee.Algorithms.IsEqual(nClasSample, 1) ,
+        null,
+        classifier.explain()
+      )
+      )
+    );
+      
+    var importances = ee.Feature(
+      ee.Algorithms.If(
+        ee.Algorithms.IsEqual(nBands, 0),
+        null, 
+        ee.Algorithms.If(
+          // solución al problema 'only one class'
+          ee.Algorithms.IsEqual(nClasSample, 1),
+          null,
+          ee.Feature( null, 
+            ee.Dictionary(explainer.get('importance')))
+              .set('_trees', explainer.get('numberOfTrees'))
+              .set('_oobError', explainer.get('outOfBagErrorEstimate'))
+              .set('_year', year)
+        )
+      )
+    );
+    
+    variablesImportance = variablesImportance
+        .merge( ee.FeatureCollection( [ importances ] ));
+
+
+    // Generar la clasificacion
+   
+    classified = ee.Image(
+      ee.Algorithms.If(
+        ee.Algorithms.IsEqual(nBands, 0),
+        classified.addBands(
+          ee.Image().updateMask(region.rasterMask)
+            .rename('classification_' + year)
+        ),
+        ee.Algorithms.If(
+          // solución al problema 'only one class'
+          ee.Algorithms.IsEqual(nClasSample, 1),
+          classified.addBands(
+            ee.Image().updateMask(region.rasterMask)
+              .rename('classification_' + year)
+          ),
+          classified.addBands(
+            yearMosaic.classify(classifier)
+              .select(['classification'], ['classification_' + year])
+          )
+        )
+      )
+    ).unmask(27).updateMask(region.rasterMask).toByte();
+    
+    
+    
+    
+    return classified;
+  });
+  
+  return {
+    importance: variablesImportance,
+    coverImage: classified.slice(1)
+  };
+
+}
+
+
+
+/**
+ * Función para enviar visualización al mapa
+ * 
+ */
+function addLayersToMap(image,PixEstable, mosaic, years, region) {
+  
+  var PALETTE = [
+    'ffffff', 'FF0000', 'e2c539', '006400', '00ff00', '687537', '76a5af',
+    '29eee4', '77a605', '935132', 'bbfcac', '45c2a5', 'b8af4f', 'f1c232', 
+    'ffffb2', 'ffd966', 'f6b26b', 'f99f40', 'e974ed', 'd5a6bd', 'c27ba0',
+    'fff3bf', 'ea9999', 'dd7e6b', 'aa0000', 'ff99ff', '0000ff', 'd5d5e5',
+    'dd497f', 'b2ae7c', 'af2a2a', '8a2be2', '968c46', '0000ff', '4fd3ff'
+  ];
+  var PALETTE2 = [
+    'ffffff', 'ffff00','00ff00'
+  ];
+
+  years.forEach(function(year) {
+    var filtered = mosaic.filterMetadata('year', 'equals', year)
+      .mosaic()
+      .clip(region);
+    Map.addLayer(
+      filtered,
+      {
+        bands: ['swir1_median', 'nir_median', 'red_median'],
+        gain: [0.08, 0.06, 0.2]
+      },
+      'MOSAICO ' + year.toString(), false
+    );
+    
+    Map.addLayer(image.select('classification_' + year.toString()),
+      {
+        min: 0,
+        max: 34,
+        palette: PALETTE
+      },
+      'CLASIFICACION ' + year.toString(), false
+    );
+  });
+  Map.addLayer(PixEstable,
+      {
+        min: 0,
+        max: 34,
+        palette: PALETTE
+      },
+      'Pixels estable ', false
+    );
+}
+
+
+
+/**
+ * Función para exportar assets a GEE y drive 
+ */
+function exportImage(image, imageName, imageId, region, driveFolder) {
+  Export.image.toAsset({
+    image: image.toInt8(),
+    description: imageName,
+    assetId: imageId,
+    scale: 30,
+    pyramidingPolicy: {
+      '.default': 'mode'
+    },
+    maxPixels: 1e13,
+    region: region.geometry().bounds()
+  });
+  
+  Export.image.toDrive({
+    image: image.toInt8(),
+    description: imageName + '-DRIVE',
+    folder: driveFolder,
+    scale: 30,
+    maxPixels: 1e13,
+    region: region.geometry().bounds()
+  });
+}
+ 
+function exportFeatures(features, tableName, driveFolder) {
+  Export.table.toDrive({
+    collection: features, 
+    description: tableName,
+    folder: driveFolder,
+    fileFormat: 'CSV',
+  });
+}
+

@@ -1,0 +1,163 @@
+// TEMA TRANSVERSAL GLACIARES
+
+var params = {
+    'regionGlacier': 4061,
+    // 'cloud_cover': 70, seleccionar abajo
+    'pais': 'ECUADOR', // Options: 'Perú', 'Bolivia', 'Colombia', 'Ecuador'...
+    'shadowSum':2500,
+    'version':2
+};
+
+// var tree = {
+//   ndsi_min:115,  //mayor o igual a 120  para frec_ndsi
+//   nir_dry:1100,  //mayor o igual a
+//   red_dry:1000,  //mayor o igual a
+//   frec_ndsi: 1  //frecuencias de ndsi>n mayor igual a 2
+// }
+//l5(1985-2012), l7(1999-2020), lx(1999-2013), l8(20)
+//             YEAR, SENSOR,  <=Nube,>=ndsi_min,>=nir_dry,>=red_dry,>=frec_ndsi
+var YearsSensors =  [
+              [1985,  'l5',      40,    115,  1100,  1000,  1], 
+              [1986,  'l5',      50,    115,  1100,  1000,  1], 
+              [1987,  'l5',      40,    115,  1100,  1000,  1], 
+              // [1988,  'null',      NULL,    115,  1100,  1000,  1], 
+              [1989,  'l5',      50,    83,   1100,  1000,  1], 
+              [1990,  'l5',      60,    90,   1100,  1000,  1], 
+              [1991,  'l5',      70,    93,   1100,  1000,  1], 
+              // [1992,  'null',      NULL,    100,  1100,  1000,  1], 
+              // [1993,  'null',      NULL,    100,  1100,  1000,  1], 
+              // [1994,  'null',      NULL,    115,  1100,  1000,  1], 
+              // [1995,  'null',      NULL,    100,  1100,  1000,  1], 
+              [1996,  'l5',      70,    105,  1100,  1000,  1], 
+              [1997,  'l5',      80,    100,  1100,  1000,  1], 
+              [1998,  'l5',      40,    100,  1100,  1000,  1], 
+              [1999,  'l5',      50,    110,  1100,  1000,  1], 
+              [2000,  'lx',      40,    100,  1100,  1000,  1], 
+              [2001,  'lx',      40,    100,  1100,  1000,  1], 
+              [2002,  'lx',      70,    115,  1100,  1000,  1], 
+              [2003,  'lx',      70,    115,  1100,  1000,  1], 
+              [2004,  'lx',      30,    105,  1100,  1000,  1], 
+              [2005,  'lx',      70,    105,  1100,  1000,  1], 
+              [2006,  'lx',      60,    105,  1100,  1000,  1], 
+              [2007,  'lx',      60,    105,  1100,  1000,  1], 
+              [2008,  'lx',      70,    105,  1100,  1000,  1], 
+              [2009,  'lx',      60,    105,  1100,  1000,  1], 
+              [2010,  'lx',      40,    105,  1100,  1000,  1], 
+              [2011,  'lx',      50,    100,  1100,  1000,  1], 
+              [2012,  'lx',      80,    95,   1100,  1000,  1], 
+              [2013,  'l8',      70,    95,   1100,  1000,  1], 
+              [2014,  'l8',      90,    105,  1100,  1000,  1], 
+              [2015,  'l8',      60,    103,  1100,  1000,  1], 
+              [2016,  'l8',      60,    105,  1100,  1000,  1], 
+              [2017,  'l8',      40,    115,  1100,  1000,  1], 
+              [2018,  'l8',      70,    115,  1100,  1000,  1], 
+              [2019,  'l8',      90,    115,  1100,  1000,  1], 
+              [2020,  'l8',      95,    115,  1100,  1000,  1]
+             ]  
+             
+
+/**
+* Importa geometria: carta y region
+*/
+ 
+var AssetRegions = 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/clasificacion-regiones-glacier-3';
+var AssetRegionsRaster = 'projects/mapbiomas-raisg/DATOS_AUXILIARES/RASTERS/clasificacion-regiones-glacier-3';
+var palettes = require('users/mapbiomas/modules:Palettes.js');
+
+var region = ee.FeatureCollection(AssetRegions).filterMetadata('id_regionC', 'equals', params.regionGlacier)
+var regionRaster = ee.Image(AssetRegionsRaster).eq(params.regionGlacier).selfMask()
+
+// Map.centerObject(region, 10);
+Map.addLayer(
+    region.style({ fillColor: '000000', color: '00000000'}), 
+    {}, 'Background'
+);
+
+/**
+* Importa el modulo 'GetImages' para la obtención de los mosaicos
+*/
+var getImages = require('users/raisgmb01/MapBiomas_C3_Transv:GLACIAR_3/modules/GetImages.js');
+
+//var Clasification = ee.Image();
+YearsSensors.forEach(
+  function(yearsensor) {
+    var tree = {
+      ndsi_min:yearsensor[3],  //mayor o igual a 120  para frec_ndsi
+      nir_dry:yearsensor[4],  //mayor o igual a
+      red_dry:yearsensor[5],  //mayor o igual a
+      frec_ndsi: yearsensor[6]  //frecuencias de ndsi>n mayor igual a 2
+    }
+    var param = {
+    // 'grid_name': params.grid_name,
+    't0': yearsensor[0]+'-01-01',
+    't1': yearsensor[0]+'-12-31',
+    'satellite': yearsensor[1],
+    'cloud_cover': yearsensor[2],
+    'pais': params.pais,
+    'regionMosaic': params.regionGlacier,
+    'shadowSum':params.shadowSum
+    };
+  var ImagesYear = getImages.getImages(param,[],region);
+    // print('Mosaic:'+yearsensor[0], Mosaic);
+  var Mosaic = ImagesYear[0].updateMask(regionRaster);
+  var Collection = ImagesYear[1];
+  //print('# imagenes:'+yearsensor[0], Collection.size())
+    Map.addLayer(Mosaic, {
+          bands: 'swir1_median_dry,nir_median_dry,red_median_dry',
+          min:300,
+          max:5000
+      },'Mosaic-'+yearsensor[0], false)
+  var CountBandData = Collection.select('ndsi')
+                                .map(function(image){return image.gte(tree.ndsi_min)})
+                                .count().updateMask(regionRaster)
+  var Glacier = Mosaic.select('ndsi_min').gte(tree.ndsi_min)
+               .and(Mosaic.select('nir_median_dry').gte(tree.nir_dry))
+               .and(Mosaic.select('red_median_dry').gte(tree.red_dry))
+          //.and(Mosaic.select('ndwimf_median').lte(120))
+                .and(CountBandData.gte(tree.frec_ndsi))
+                .multiply(34)
+                .updateMask(regionRaster);
+                
+  Glacier = ee.Image(27).where(Mosaic.select('red_median_dry'),25)
+                       .where(Glacier.eq(34),34)
+                       .updateMask(regionRaster);
+  
+  Map.addLayer(CountBandData,{min:1, max:25, palette:'ff3000,fff90e,54ff1e,25a4ff,291aff'},'CountBandData'+yearsensor[0],false)
+  Map.addLayer(Glacier.updateMask(Glacier.eq(34)),{palette: 'purple'},'glacier_clasif'+yearsensor[0],false)
+  var Clasification = Glacier.rename('classification') //Clasification.addBands(Glacier.rename('clasification'+yearsensor[0]))
+  
+      Clasification = Clasification.toInt8().set('region', params.regionGlacier)
+                                 .set('year', yearsensor[0])
+                                 .set('version', params.version)
+                                 .set('pais', params.pais);
+  // print(Clasification)
+  
+  Export.image.toAsset({
+    image: Clasification,
+    description:'Glacier'+params.regionGlacier + '-'+ yearsensor[0] + '-'+ params.version,
+    assetId:'projects/mapbiomas-raisg/TRANSVERSALES/GLACIAR_3/clasificacion/'+ 'Glacier'+params.regionGlacier+ '-'+ yearsensor[0]+ '-'+ params.version,
+    scale: 30,
+    pyramidingPolicy: {
+      '.default': 'mode'
+    },
+    maxPixels: 1e13,
+    region: region.geometry().bounds()
+  });
+  
+  } )
+
+
+/**
+* Despliega en el mapa los mosaicos y polígonos necesarios
+* para la visualización
+*/
+//print(Clasification)
+
+
+
+Map.addLayer(
+    region.style({ fillColor: '#ff000000', color: 'f59e42'}),
+    {}, 'Regions ' + params.pais, false
+);
+
+

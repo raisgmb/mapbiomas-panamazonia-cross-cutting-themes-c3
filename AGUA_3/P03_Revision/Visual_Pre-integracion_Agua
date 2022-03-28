@@ -1,0 +1,238 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var Excluir = /* color: #d63000 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Point([-70.83022126316774, -13.901180338909585]),
+            {
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-71.1021328842615, -13.708805548840148]),
+            {
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-70.97366121057993, -13.783464472058858]),
+            {
+              "system:index": "2"
+            })]),
+    Incluir = /* color: #0037ff */ee.FeatureCollection([]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+
+
+/**
+ *  by: EYTC
+ */
+ 
+var param = {
+    ID_pais: 8,
+    pais: 'PERU',
+    years: [1985,2020],  // Lista de años Solo para visualizacion
+    version_output:'0',
+    transversal: {
+      version: '5', // version de asset
+      // region : 40201,
+      asset  : 'projects/mapbiomas-raisg/TRANSVERSALES/AGUA_3/clasificacion-ft'
+    }
+     }; 
+     
+/*
+    PERU : 8
+    GUIANA_FRANCESA: 9
+    VENEZUELA : 1
+    GUYANA : 2
+    COLOMBIA: 3
+    BRASIL: 4
+    ECUADOR: 5
+    SURINAME: 6
+    BOLIVIA: 7
+*/
+
+// CODIGO DE REGION Y VERSION A INTEGRAR
+var codesAndVersions = [
+  // ECUADOR
+         //Amazonia
+        // [40101,9], 
+        // [40102,8], [40103,11], //[40104,7], 
+        // [40105,8],         
+        // [40201,7], [40202,7], [40203,8], [40204,7], [40205,10],  
+        // [40601,8], //[40602,7], 
+         
+   // PERÚ        
+        [70101,10], [70102,10], [70103,10], [70104,9], [70105,8],         
+        [70106,10], [70107,6] , [70108,9],  [70109,9], [70110,9],       
+        [70111,7],  [70112,10], [70113,7],  [70114,10],[70115,9],  
+        [70201,7],  [70202,7],  [70203,6],  [70204,9], [70205,10], 
+        [70206,6],  [70207,6],  [70208,6],  [70209,7], [70210,8], [70211,6],  
+        //Andes
+          [70301,8],[70302,8],[70303,8],
+          [70304,8],[70305,8],[70306,8],
+          [70307,8],[70308,8],[70309,8],
+          [70310,8],[70311,8],[70312,8],
+          [70313,8],
+  // COLOMBIA
+
+  // BOLIVIA
+];
+        
+        
+// Assets
+//---------------------------------
+
+var palettes = require('users/mapbiomas/modules:Palettes.js');
+var paths = require('users/raisgmb01/MapBiomas_C3:MODULES/CollectionDirectories').paths;
+var dirinput = paths.clasificacionFiltros
+var dirout = 'projects/mapbiomas-raisg/COLECCION3/INTEGRACION/test1'
+var assetCountries = 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/paises-2';
+var regionesclass = paths.regionVector
+var regionesclassRaster = paths.regionCRaster
+var regionesMosaicRaster = paths.regionMosRaster
+var assetmosaics= paths.mosaics_c3_v2
+
+//---------------------------------
+print()
+var regi = ee.FeatureCollection(regionesclass)
+var collection = ee.ImageCollection(dirinput);
+
+// TEMA TRANSVERSAL
+var transversal_asset = param.transversal.asset;
+var transversal_image = ee.ImageCollection(transversal_asset)
+                           //.filterMetadata('code_region', 'equals', param.transversal.region)
+                           .filterMetadata('version', 'equals', param.transversal.version)
+                           .mosaic()
+                           
+print('transversal_image',transversal_image)
+
+//
+// convert vector to raster
+//
+
+function NamecountryCase (name){
+          var paisLowerCase =''
+          switch (name) {
+            case "PERU":
+                paisLowerCase = 'Perú';
+                break;
+            case "GUIANA_FRANCESA":
+                paisLowerCase = 'Guiana Francesa';
+                break;
+            case "VENEZUELA":
+                paisLowerCase = 'Venezuela';
+                break;
+            case "GUYANA":
+                paisLowerCase = 'Guyana';
+                break;
+            case "COLOMBIA":
+                paisLowerCase = 'Colombia';
+                break;
+            case "BRASIL":
+                paisLowerCase = 'Brasil';
+                break;
+            case "ECUADOR":
+                paisLowerCase = 'Ecuador';
+                break;
+            case "SURINAME":
+                paisLowerCase = 'Suriname';
+                break;
+            case "BOLIVIA":
+                paisLowerCase = 'Bolivia'
+            }
+  return paisLowerCase
+}
+
+var country = ee.FeatureCollection(assetCountries)
+                  .filterMetadata('name', 'equals', NamecountryCase(param.pais));
+                  
+Map.addLayer(country, {}, 'country', false)   
+
+var regionsRaster = ee.Image(regionesclassRaster)
+var regionMosaicRaster = ee.Image(regionesMosaicRaster)
+
+//
+// Integrate
+//
+
+var collectionsByRegion = codesAndVersions
+    .map(
+        function (codeAndVersion) {
+            var images = collection
+                .filterMetadata('code_region', 'equals', codeAndVersion[0])
+                .filterMetadata('version', 'equals', codeAndVersion[1])
+                .map(
+                    function (image) {
+                        return image.mask(regionsRaster.eq(codeAndVersion[0]));
+                    }
+                );
+            //print(codeAndVersion[0], codeAndVersion[1])
+            return images.mosaic().byte();
+        }
+    );
+
+var allRegionsClassification = ee.ImageCollection.fromImages(ee.List(collectionsByRegion));
+var integracion_v0 = allRegionsClassification.mosaic()
+
+
+var MosaicoCollection = ee.ImageCollection(assetmosaics)
+    .filter(ee.Filter.inList('year',param.years))
+    .filterMetadata('country', 'equals', param.pais)
+    .select(['swir1_median', 'nir_median', 'red_median'])
+    .map(
+        function (image) {
+            return image.updateMask(
+                regionMosaicRaster.eq(ee.Number.parse(image.get('region_code')).toInt16()));
+        }
+    );
+
+// Layer add
+
+for (var yearI=0;yearI<param.years.length;yearI++) {
+var vis = {
+    'bands': 'classification_'+param.years[yearI],
+    'min': 0,
+    'max': 34,
+    'palette': palettes.get('classification2')
+};
+
+Map.addLayer(MosaicoCollection.filterMetadata('year', 'equals', param.years[yearI]),{
+  "bands":["swir1_median","nir_median","red_median"],
+  // 'gain': [0.1, 0.055, 0.1],
+      // 'gamma': 0.65},
+  "min":407,"max":3381}, 
+  'Mosaic' + param.years[yearI],false)
+Map.addLayer(integracion_v0, vis, 'classification_'+param.years[yearI],false);
+
+// Map.addLayer(transversal_image.updateMask(transversal_image.eq(33).selfMask()).reduce('max'), 
+//         {
+//               'min': 0,
+//               'max': 34,
+//               'palette': palettes.get('classification2')
+//         }, 'Water_classific_max',false);
+        
+Map.addLayer(transversal_image.updateMask(transversal_image.eq(33).selfMask()), 
+             vis, 'Water_classific_'+param.years[yearI],false);
+             
+
+}
+
+integracion_v0 = integracion_v0
+        //.set('ID_pais', param.ID_pais)
+        .set('pais', param.pais) 
+        .set('version', param.version_output)
+        .set('descripcion', 'integracion v0');
+        
+print(integracion_v0)  
+
+var prefixo_out = param.pais + '-CLASES-GENERALES-'
+
+Export.image.toAsset({
+    'image': integracion_v0,
+    'description': prefixo_out+param.version_output,
+    'assetId': dirout+'/' +prefixo_out+param.version_output,
+    'pyramidingPolicy': {
+        '.default': 'mode'
+    },
+    'region': country.geometry().bounds(),
+    'scale': 30,
+    'maxPixels': 1e13
+});
+
+Map.addLayer(regi,{},'regi_clas',false)

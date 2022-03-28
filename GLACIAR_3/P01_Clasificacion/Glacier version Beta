@@ -1,0 +1,99 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var Area_trabajo = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-71.17197688778799, -13.497444218772182],
+          [-71.17197688778799, -13.95269673437684],
+          [-70.63364680966299, -13.95269673437684],
+          [-70.63364680966299, -13.497444218772182]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+// Glacier detect, Version Beta
+// By: EYTC  
+
+var year = 2018;
+
+var startdate = ee.Date(year+'-01-01');
+var enddate = ee.Date(year+'-12-31');
+var l8images = ee.ImageCollection('LANDSAT/LC08/C01/T1_TOA')
+              .filterBounds(Area_trabajo)
+              .filterDate(startdate, enddate)
+              .filterMetadata('CLOUD_COVER', 'less_than', 75);
+
+//Makes  a  function  to  mask  the  clouds
+var cloudThresh = 30;
+var cloudFunction = function(image){
+var scored = ee.Algorithms.Landsat.simpleCloudScore(image);
+var quality = scored.select('cloud');
+var cloudy = quality.gt(cloudThresh);
+var cloudmask = cloudy.not();
+return image.updateMask(cloudmask);
+};
+
+//  Map  the  function  over  the  Landsat  8  collection.
+var l8CloudMasked = l8images.map(cloudFunction);
+
+//Display  the  median  of  the  image  collection  for  the Area study
+//Map.centerObject(Area_trabajo,13);
+Map.addLayer(l8CloudMasked.median().clip(Area_trabajo), {
+min: 0,
+max: 0.5,
+bands: ['B6', 'B5', 'B4']
+}, 'Landsat 8 False colour median '+year);
+
+// Creating the function to calculate the NDSI
+function addNDSI(img) {
+var NDSI = img.normalizedDifference(['B3', 'B6']).rename('NDSI');
+return img.addBands(NDSI);
+}
+
+function NDWI(image){
+  var ndwi = image.expression('(verde - nir)/(verde + nir)',{
+             'verde':image.select('B3'),
+             'nir':image.select('B5')
+  }).rename('NDWI');
+  
+  return image.addBands(ndwi)
+}
+// Add NDSI to the collection
+var l8ndsi = l8CloudMasked
+               .map(addNDSI)
+               .map(NDWI);
+
+// Map NDSI spatially
+Map.addLayer(l8ndsi.select('NDSI'),{},'NDSI_serie',false)
+Map.addLayer(l8ndsi.select('NDSI').min().clip(Area_trabajo),
+{bands: 'NDSI', min: -1, max:1, palette: ['ff0000','0c57ff']}, 'NDSI min'+year,false);
+
+var NDSImin = l8ndsi.select('NDSI').min()
+var NDWImedian = l8ndsi.select('NDWI').median()
+var CountBandData = l8ndsi.select('NDSI').map(function(image){return image.gte(0.4).selfMask()}).count()
+
+var Glacier = NDSImin.gte(0.4).and(NDWImedian.lte(0.2))
+                              .and(CountBandData.gte(2)).selfMask()
+                              .clip(Area_trabajo)
+Map.addLayer(NDWImedian,{palette: ['NDWI']},'NDWImedian',false)                              
+Map.addLayer(Glacier,{palette: ['red']},'glacier_prop',false)
+Map.addLayer(CountBandData,{},'CountBandData')
+
+var calcArea = function (image){
+      var glacier = image.rename('glacier')
+      var area_GEE = glacier.multiply(ee.Image.pixelArea())
+                     .reduceRegion(ee.Reducer.sum(), Area_trabajo, 30, null, null, false, 1e13)
+                     .get('glacier')
+                     
+      area_GEE = ee.Number(area_GEE).multiply(0.0001);
+      return  ee.Feature(null).set('area', area_GEE)
+                              .set('fecha', image.get('fecha'))
+}
+
+
+var areaGlaciar = calcArea(Glacier)
+print(areaGlaciar)
+
+

@@ -1,0 +1,895 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var Muestras_pasto = /* color: #d6d138 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Point([-60.857961676365186, -16.088497569476385]),
+            {
+              "reference": 1,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.85731794620161, -16.0885748842548]),
+            {
+              "reference": 1,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.85766126895552, -16.088002754182074]),
+            {
+              "reference": 1,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.85931887412672, -16.087631641902536]),
+            {
+              "reference": 1,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.855513879984954, -16.08958896365572]),
+            {
+              "reference": 1,
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.855487057894806, -16.089918838021504]),
+            {
+              "reference": 1,
+              "system:index": "5"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.8590451810702, -16.092681267649397]),
+            {
+              "reference": 1,
+              "system:index": "6"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.8600443702231, -16.095544052308476]),
+            {
+              "reference": 1,
+              "system:index": "7"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.85804344229799, -16.094379213998575]),
+            {
+              "reference": 1,
+              "system:index": "8"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.990773058315916, -16.05585790692626]),
+            {
+              "reference": 1,
+              "system:index": "9"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.989582157513304, -16.055481579482063]),
+            {
+              "reference": 1,
+              "system:index": "10"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.98924419917743, -16.057347744208663]),
+            {
+              "reference": 1,
+              "system:index": "11"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.98723790683429, -16.055687786388912]),
+            {
+              "reference": 1,
+              "system:index": "12"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.99070662734059, -16.062875768673123]),
+            {
+              "reference": 1,
+              "system:index": "13"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.99225157973317, -16.065803777945977]),
+            {
+              "reference": 1,
+              "system:index": "14"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.98828191039113, -16.06790696928134]),
+            {
+              "reference": 1,
+              "system:index": "15"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.9816300320342, -16.066257409330365]),
+            {
+              "reference": 1,
+              "system:index": "16"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.00475146163637, -16.0616617025966]),
+            {
+              "reference": 1,
+              "system:index": "17"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.03374501759901, -16.104604630233453]),
+            {
+              "reference": 1,
+              "system:index": "18"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.03571670822991, -16.104397530538222]),
+            {
+              "reference": 1,
+              "system:index": "19"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.04322646282598, -16.100329937139616]),
+            {
+              "reference": 1,
+              "system:index": "20"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.04361270092412, -16.098969273189354]),
+            {
+              "reference": 1,
+              "system:index": "21"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.03790496014043, -16.09828893771686]),
+            {
+              "reference": 1,
+              "system:index": "22"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.07748531113666, -16.084260850977447]),
+            {
+              "reference": 1,
+              "system:index": "23"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.075951087580144, -16.084023747080142]),
+            {
+              "reference": 1,
+              "system:index": "24"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.08127656246458, -16.082791183669208]),
+            {
+              "reference": 1,
+              "system:index": "25"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.082098623295586, -16.08177025449405]),
+            {
+              "reference": 1,
+              "system:index": "26"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.08129932500915, -16.08168778257175]),
+            {
+              "reference": 1,
+              "system:index": "27"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.081599732418816, -16.081028568974197]),
+            {
+              "reference": 1,
+              "system:index": "28"
+            })]),
+    No_pasto = /* color: #ff3f8f */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Point([-61.05603291318968, -16.078305756720404]),
+            {
+              "reference": 2,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.052728431683335, -16.079212961419945]),
+            {
+              "reference": 2,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.023846221821806, -16.067311197753757]),
+            {
+              "reference": 2,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.02702195729544, -16.061867581711258]),
+            {
+              "reference": 2,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.07714707936575, -16.0597230860185]),
+            {
+              "reference": 2,
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.0614018167873, -16.058858744041935]),
+            {
+              "reference": 2,
+              "system:index": "5"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.99650637226833, -16.08121662211827]),
+            {
+              "reference": 2,
+              "system:index": "6"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.01341501789821, -16.078824915815517]),
+            {
+              "reference": 2,
+              "system:index": "7"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-60.98570199066422, -16.10378856639311]),
+            {
+              "reference": 2,
+              "system:index": "8"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.003726435244296, -16.118796221465367]),
+            {
+              "reference": 2,
+              "system:index": "9"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.018751843312145, -16.12635183118708]),
+            {
+              "reference": 2,
+              "system:index": "10"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.096118567503986, -16.11876626279723]),
+            {
+              "reference": 2,
+              "system:index": "11"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.07474672607332, -16.113736350311957]),
+            {
+              "reference": 2,
+              "system:index": "12"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.06981156898083, -16.173294512333108]),
+            {
+              "reference": 2,
+              "system:index": "13"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.1120402677113, -16.16010466089217]),
+            {
+              "reference": 2,
+              "system:index": "14"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.23442184953492, -16.2043616027086]),
+            {
+              "reference": 2,
+              "system:index": "15"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.224293828294684, -16.20287802191568]),
+            {
+              "reference": 2,
+              "system:index": "16"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.22334969072144, -16.19826236584428]),
+            {
+              "reference": 2,
+              "system:index": "17"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-61.23661053209107, -16.199952038190954]),
+            {
+              "reference": 2,
+              "system:index": "18"
+            })]),
+    AOI = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[-61.167569368462395, -16.33176472636529],
+          [-61.1310114964655, -16.689351832973298],
+          [-60.94287062732487, -16.831366667302397],
+          [-60.55560256091862, -16.728811025885474],
+          [-60.444365988653, -16.590668235470464],
+          [-60.3290095433405, -16.441889359272146],
+          [-60.447630626823376, -16.189946178694353],
+          [-60.6742236444015, -16.154334560902523],
+          [-60.793699962760876, -16.01842405071664],
+          [-61.079344494010876, -15.948453381083606],
+          [-61.23177979674525, -16.048781056279058],
+          [-61.283964855339, -16.18730850126719]]]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+ 
+var L8 = ee.ImageCollection("LANDSAT/LC08/C01/T1_TOA")
+var L5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_TOA")
+var L7 = ee.ImageCollection("LANDSAT/LE07/C01/T1_TOA")
+var LANDSAT_GRID = ee.FeatureCollection("users/vieiramesquita/LAPIG-PASTURE/VECTORS/LANDSAT_GRID_V2_PASTURE")
+
+var TRAIN_DATA_PLANTED = ee.FeatureCollection("users/vieiramesquita/mapbiomas_col3_1_all_stages_12_03_2018_past_cultivado_QGIS_new_pampa_v2")
+var TRAIN_DATA_NATURAL = ee.FeatureCollection("users/vieiramesquita/mapbiomas_col3_1_all_stages_12_03_2018_past_natural_QGIS")
+
+var TRAIN_DATA = TRAIN_DATA_PLANTED 
+
+/*************************************************************** *****/
+/**************** Classification Parameters *************************/
+/********************************************************************/
+/**
+ * mask - Ya no utiliza la región, si no utiliza una mascara en la geometria AOI
+ */
+var MascaraPasto = AOI// Aqui reemplazar las máscara para clasificar solamente pastos
+                      // también es posible insertar una geometria guarado en el asset
+                      // sin embargo la máscara no tiene que se mayor al área de la región
+ 
+var params = {
+    'region':21001,
+    'yearVis':[2005,2015], // Año de visualización
+    'pais':'BOLIVIA',
+    'geometry': null,
+    'tileScale': 16,
+    'versionInC3': 7,//  versión de la colección 3 clases generales
+    'clasesC3':[21,25], // son las clases a tomar en cuenta de la Col3 como máscaras
+    'versionOut': 1,
+    'VerClass':0, // 0 - No se ve - 1 si se ve
+    'ExportarDrive':0, // 0 - No exportar Drive - 1  exportar Drive
+    'ExportarAsset':1, // 0 - No exportar asset - 1  exportar asset 
+    'shape':'', // Solo incluir el nombre y guardar el asset en esta ubicación  projects/mapbiomas-raisg/MUESTRAS/COLECCION3/TRANSVERSALES/PASTOS/BOLIVIA (pais que corresponde)
+                // y solo cuenta con muestras de pastos...
+                // incluir un atributo con el nombre "reference", tipo entero 8 bits que incluya
+                // el valor 1 para clasificar Pastos...
+};
+
+var years = [1985,1986,1987,1988,1989,
+             1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,
+             2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,
+             2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020];
+var AssetRegion = 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/clasificacion-regiones-3'
+var assetOutputClass = 'projects/mapbiomas-raisg/TRANSVERSALES/PASTOS_3/clasificacion'
+var AssetShape = 'projects/mapbiomas-raisg/MUESTRAS/COLECCION3/TRANSVERSALES/PASTOS/'+params.pais+'/';
+var AssetC3 = 'projects/mapbiomas-raisg/COLECCION3/clasificacion/'
+var AssetC3FT = 'projects/mapbiomas-raisg/COLECCION3/clasificacion-ft/'
+var assetsMosaics = 'projects/mapbiomas-raisg/MOSAICOS/workspace-c3-v2'
+var RegionesVec = ee.FeatureCollection(AssetRegion)
+          .filterMetadata('id_regionC','equals',params.region)
+var RegMos = parseInt(params.region/100)
+  RegMos = RegMos.toString();
+var mosaicC3 = ee.ImageCollection(assetsMosaics)
+              .filterMetadata('region_code','equals',RegMos)
+              .filterBounds(RegionesVec)
+
+//BOLIVIA-20101-1          
+var NombreAgri = params.pais+'-'+params.region+'-'+params.versionInC3
+if (params.versionInC3===1 || params.versionInC3 ===3){
+  var ClassC3= ee.Image(AssetC3+NombreAgri)  
+}
+else{
+  var ClassC3= ee.Image(AssetC3FT+NombreAgri)  
+}
+var maskC3 = ClassC3.multiply(0)
+params.clasesC3.forEach(function(clas){
+  maskC3 =  maskC3.where(ClassC3.eq(clas),1)
+})
+maskC3 = maskC3.eq(1).selfMask()// obtenemos la clase agricultura
+
+params.yearVis.forEach(function(y){
+  Map.addLayer(maskC3.select('classification_'+y),{palette:['#ffffff','#0000FF'],min:0,max:1},'Mascara Uso '+y,false)  
+})
+
+var leng = years.length;
+var maskC3Estable = maskC3.reduce(ee.Reducer.sum()).gte(leng)              
+//var year = 2017 //Year choosed;
+var year = years[0] //Year choosed;
+//var landsatWRSPath = '221'; //Landsat satellite WRS orbital path number (1 - 251) / Works only for Brazil;
+//var landsatWRSRow = '071'; // Landsat satellite WRS row (1-248) / Works only for Brazil;
+var pastureMapThreshold = 0.51 // PROBABILITY ABOVE 51% (10^-2%);
+
+var rfNTrees = 40; //Number of random trees;
+var rfBagFraction = 0.5; //Fraction (10^-2%) of variables in the bag;
+var rfVarPersplit = 6 //Number of varibales per tree branch;
+var ShapeFile = ''//ee.FeatureCollection([])
+
+
+if (params.shape!==''){
+    ShapeFile = AssetShape+params.shape
+}
+
+/********************************************************************/
+/**************** Classification Methods ****************************/
+/********************************************************************/
+
+//Select of the feature that corresponds to the chosen Landsat Tile (WRS Path / WRS Row);
+var getClassificationArea = function() {
+  /*
+  var wrsFieldName = 'TILE_T'
+  var wrsFieldValue = 'T'+landsatWRSPath+landsatWRSRow
+
+  var classificationArea = LANDSAT_GRID
+                              .filter(ee.Filter.eq(wrsFieldName, wrsFieldValue))
+  //return classificationArea
+  */
+  //return RegionesVec
+  return AOI
+}
+
+function zeroPad(num, places) {
+  var zero = places - num.toString().length + 1;
+  return Array(+(zero > 0 && zero)).join("0") + num;
+}
+
+//Select the second order neighborhood features from the chosen Landsat Tile
+var getNeibArea = function() {
+  
+  var neitiles = []
+  
+  var xW = [1,1] //Window Path
+  var yW = [1,1] //Window Row 
+  
+  var wrs_path = ee.List.sequence(parseInt(landsatWRSPath)-xW[0], parseInt(landsatWRSPath) + xW[1])
+  var wrs_row = ee.List.sequence(parseInt(landsatWRSRow)-xW[0], parseInt(landsatWRSRow) + xW[1])
+  //print(wrs_path)
+  //print(wrs_row)
+
+  for (var pInc = (parseInt(landsatWRSPath)-xW[0]) ; pInc < (parseInt(landsatWRSPath) + xW[1]); pInc++){
+    for (var rInc = (parseInt(landsatWRSRow)-yW[0]) ; rInc < (parseInt(landsatWRSRow) + yW[1]); rInc++){
+      
+      var pAux = pInc
+      var rAux = rInc;
+      
+      if (landsatWRSPath === 1 & pAux === 0){
+        pAux = 233
+      }	else if (landsatWRSPath === 233 & pAux === 234){
+        pAux = 1
+      }	
+      
+      var tAux = pAux + '/' + rAux
+      
+      neitiles.push(tAux)
+      
+    }
+  }
+  return neitiles
+}
+
+//Delimits the sample area based on the chosen Landsat Tile and the neighbors.
+var getSamplingArea = function() {
+  /*
+  var classificationArea = getClassificationArea()
+  var samplingArea = LANDSAT_GRID.
+                        filterBounds(classificationArea.geometry().buffer(75000))
+  */                    
+  //return samplingArea
+  return RegionesVec
+}
+
+//Creates the feature space for the phases of sampling and classifying
+var getFeatureSpace = function() {
+  
+  var clipCollection = function(img){
+		
+		//var wrsProps = ee.Number.parse(img.get('WRS_PATH')).format().cat('/').cat(ee.Number.parse(img.get('WRS_ROW')).format())
+		
+		//var gridSelect = LANDSAT_GRID.filter(ee.Filter.eq('SPRNOME',wrsProps))
+		
+		//return img.clip(RegionesVec)
+		
+		return img.clip(MascaraPasto)
+  }
+
+  //Generates spectral indexes based on the satellite data
+  var spectralFeatures = function(image) {
+    
+    var qaImage, ndvi, ndwi, cai;
+
+    if (year >2012){
+      
+      qaImage = ee.Image(image.select(['BQA']));
+      image = image.mask(qaImage.eq(2720));
+      
+      ndvi = image.expression(indexes["NDVI_L8"]).select([0],['NDVI']);
+      ndwi = image.expression(indexes["NDWI_L8"]).select([0],['NDWI']);
+      cai = image.expression(indexes["CAI_L8"]).select([0],['CAI']);
+      
+      image = image.addBands([ndvi,ndwi,cai]);
+      
+      return image;
+    } else {
+      
+      qaImage = ee.Image(image.select(['BQA']));
+      image = image.mask(qaImage.eq(672));
+      
+      ndvi = image.expression(indexes["NDVI_L5_7"]).select([0],['NDVI']);
+      ndwi = image.expression(indexes["NDWI_L5_7"]).select([0],['NDWI']);
+      cai = image.expression(indexes["CAI_L5_7"]).select([0],['CAI']);
+      
+      image = image.addBands([ndvi,ndwi,cai]);
+      
+      return image;
+    }
+  };
+
+  //Builds spectro-temporal features from spectral data and spectral indexes
+  var temporalFeatures = function(image) {
+
+    var min = image.reduce(ee.Reducer.min())
+    var max = image.reduce(ee.Reducer.max())
+    var median = image.reduce(ee.Reducer.median());
+    var stdv = image.reduce(ee.Reducer.stdDev());
+
+    var amp = image.reduce(ee.Reducer.max())
+                   .subtract(image.reduce(ee.Reducer.min()))
+                   .rename(landsatBandsWetAmp)
+
+    var result = ee.Image().select()
+                      .addBands([min,max,median,amp,stdv])
+                      //.clip(samplingArea);
+    
+    return result;
+  };
+  
+  var temporalPercs = function(image) {
+  
+    var percs = image.reduce(ee.Reducer.percentile([10,25,75,90]))
+
+    var result = ee.Image().select().addBands([percs])
+
+    return result;
+  };
+  
+  var getLatLong = (function(img) {
+
+    // Get the projection
+    var proj = ee.Image(img).select(['ndvi_wet_p10']).projection()
+    // get coordinates image
+    var latlon = ee.Image.pixelLonLat()//.reproject(proj)
+    
+    return ee.Image(img).addBands(latlon.select('longitude','latitude'));
+  });
+
+  function radians(img) {
+    return img.toFloat().multiply(Math.PI).divide(180);
+  }
+  
+  /*****************SRTM*****************/
+  
+  function radians(img) {
+    return img.toFloat().multiply(Math.PI).divide(180);
+  }
+  
+  var terrain = ee.Algorithms.Terrain(ee.Image('USGS/SRTMGL1_003'));
+  
+  var elevation = terrain.select('elevation');
+  var slope = (radians(terrain.select('slope'))).expression('b("slope")*100');
+  var aspect = radians(terrain.select('aspect'));
+  
+  /**************************************/
+
+  //var bands; 
+  //var landsatCollection = ee.ImageCollection(L5p)
+
+  //Defines the date window that will be used to filter the satellite collection
+  var startDate = (year-1)+'-07-01';
+  var endDate = (year+1)+'-06-30';
+  
+  var landsatCollection = ee.ImageCollection(ee.Algorithms.If(ee.Number(year).gt(2012), L8, ee.Algorithms.If(ee.List([2000,2001,2002,2012]).contains(year), L7, L5)))
+  
+  var bands = ee.Algorithms.If(ee.Number(year).gt(2012),["B3","B4","B5","B6","B7","NDVI","NDWI","CAI"],["B2","B3","B4","B5","B7","NDVI","NDWI","CAI"])
+  
+  var indexes = {
+    'CAI_L8':    "(b('B7') / b('B6'))",
+    'CAI_L5_7':  "(b('B7') / b('B5'))",
+    'NDVI_L8':   "(b('B5') - b('B4')) / (b('B5') + b('B4'))",
+    'NDWI_L8':   "(b('B5') - b('B6')) / (b('B5') + b('B6'))",
+    'NDVI_L5_7': "(b('B4') - b('B3')) / (b('B4') + b('B3'))",
+    'NDWI_L5_7': "(b('B4') - b('B5')) / (b('B4') + b('B5'))",
+  }
+
+  var landsatBandsWet = ['green_wet','red_wet','nir_wet', 'swir1_wet','swir2_wet','ndvi_wet','ndwi_wet','cai_wet'];
+  var landsatBandsWetAmp = ['green_wet_amp','red_wet_amp','nir_wet_amp', 'swir1_wet_amp','swir2_wet_amp','ndvi_wet_amp','ndwi_wet_amp','cai_wet_amp'];
+
+  samplingArea.evaluate(function(samplingArea) {
+    samplingArea.features.forEach(function(scene) {
+    })
+  })
+
+  var neibData = []
+  
+  //Builds an mask based on the NDVI percentil 25%
+  var onlyWetSeasonNei = function(image) {
+    var seasonMask = image.select("ndvi_wet").gte(wetThresholdNei)
+    return image.mask(seasonMask);
+  }
+  //print(startDate,endDate)
+  var spectralDataNei = landsatCollection
+                        //.filterMetadata('WRS_PATH', 'equals', parseInt(sceneInfo[0]))
+                        //.filterMetadata('WRS_ROW', 'equals', parseInt(sceneInfo[1]))
+                        .filterBounds(RegionesVec)
+                        .filterDate(startDate, endDate)
+                        .map(spectralFeatures)
+                        .map(clipCollection)
+                        //.select(['B3','B4','B5','B6','B7','NDVI','NDWI','CAI'])
+                        .select(bands)
+    //print(spectralDataNei)
+    
+    var wetThresholdNei = spectralDataNei
+                              .select("NDVI")
+                              .reduce(ee.Reducer.percentile([25]));
+                              
+    var wetSpectralDataNei = spectralDataNei
+                              .select(bands, landsatBandsWet)
+                              .map(onlyWetSeasonNei)
+    
+    var temporalData = getLatLong(temporalPercs(wetSpectralDataNei)).addBands([temporalFeatures(wetSpectralDataNei),
+    elevation,slope])
+    
+    var bandSize = ee.Number(temporalData.bandNames().size())
+    
+    neibData.push(temporalData.set({BandNumber: bandSize}))
+    // hasta aquí llegaba el bucle...
+  
+    var neibCollection = ee.ImageCollection(neibData).filter(ee.Filter.gt('BandNumber',0)).mosaic()
+    //var wetSpectralTemporalData = neibCollection.clip(LANDSAT_GRID.filter(ee.Filter.eq('TILE_T','T' +landsatWRSPath+landsatWRSRow)))
+    //var wetSpectralTemporalData = neibCollection.clip(RegionesVec)
+    var wetSpectralTemporalData = neibCollection.clip(MascaraPasto)
+   // print('neibCollection',neibCollection)
+    if (params.yearVis.indexOf(year)>=0){
+      Map.addLayer(
+        //neibCollection,
+        mosaicC3.filterMetadata('year','equals',year)
+        .mosaic()
+        .clip(RegionesVec),
+        {
+          bands: ['swir1_median', 'nir_median', 'red_median'],
+          gain: [0.08, 0.06, 0.2]
+          //gain: [800, 600, 2000]
+        },
+        //'MOSAICO ' + params.year.toString(), false
+        'MOSAICO ' + year.toString(), false
+      );
+      
+    }
+    
+  return [wetSpectralTemporalData, neibCollection]
+}
+
+//Organizes the samples for the classifier training phase
+var getTrainSamples = function() {
+  
+  var trainSamples = TRAIN_DATA
+                      .select(classFieldName)
+                      .filterBounds(samplingArea)
+                      .merge(Muestras_pasto)
+                      .merge(No_pasto)
+  
+  
+  var shapePath = AssetShape;
+  var shapeName = params.shape;
+  var ShapeAditionalSamp;
+  var shapes = shapePath !== '' && shapeName !== '';
+    
+  if(shapes){
+    ShapeAditionalSamp = ee.FeatureCollection(shapePath + shapeName);
+    //Map.addLayer(ShapeAditionalSamp,{},'Shape de puntos adicionales',false);
+  }
+  else ShapeAditionalSamp = null;
+  
+  if(ShapeAditionalSamp !== null) {
+    var setVersion = function(item) { return item.set('reference', 1) };
+  
+    ShapeAditionalSamp = ShapeAditionalSamp
+      .map(setVersion)
+      .filterBounds(samplingArea)
+    trainSamples = trainSamples.merge(ShapeAditionalSamp)
+  }
+                      
+  
+  return trainSamples
+}
+
+//Classifier training phase
+var getTrainedClassifier = function() {
+  
+  var classifier_loc = ee.Classifier.smileRandomForest({
+    numberOfTrees:rfNTrees,
+    variablesPerSplit:rfVarPersplit,
+    minLeafPopulation:1,
+    bagFraction:rfBagFraction,
+    maxNodes:null
+    //seed:1//year
+    });
+  //var classifier = ee.Classifier.randomForest(rfNTrees, rfVarPersplit, 1, rfBagFraction, false, year);
+  
+  //classifier = classifier.setOutputMode('PROBABILITY');
+  //print('trainSamples',trainSamples)
+  //print(featureSpace[1].clip(samplingArea))
+  //Map.addLayer(featureSpace[1].clip(samplingArea));
+  
+  //var trainSamplesFeeded = featureSpace[1].clip(RegionesVec).sampleRegions({
+  var trainSamplesFeeded = featureSpace[0].clip(MascaraPasto).sampleRegions({
+    collection: trainSamples,//.filter(ee.Filter.neq(classFieldName,null)),
+    properties: [classFieldName],
+    //properties: ["reference"],
+    scale: 30,
+    //tileScale: 16
+    tileScale: params.tileScale
+  });
+  //print(trainSamplesFeeded)
+  //print('trainSamplesFeeded',trainSamplesFeeded)
+  return classifier_loc.train(trainSamplesFeeded, classFieldName);
+};
+
+//Runs trained classifier
+var classify = function() {
+  featureSpace = ee.Image(featureSpace[0]);
+  
+  return featureSpace.classify(classifier).select(0);
+};
+
+//Adds visualization layers
+
+var addLayers = function() {
+
+  var pastureSamples = trainSamples.select(classFieldName).filter(ee.Filter.eq(classFieldName,1));
+  var notPastureSamples = trainSamples.select(classFieldName).filter(ee.Filter.eq(classFieldName,2));
+  
+  var pastureContinuousStyle = { min:0, max:1, palette:['#37990a','#fff9b2','#d82727'], opacity: 1 };
+  var pastureStyle = { palette:'#a37106',opacity: 1 };
+  
+  var VisPasto = {
+    bands:'classification_'+year,
+    min: 0,
+    max: 2,
+    palette: ['FFFFFF','FF0000','00FF00']
+  }
+  
+  Map.addLayer(RegionesVec,{},'Region');
+  Map.addLayer(samplingArea,{},'Sampling Area');
+  Map.addLayer(classificationArea, {},'Classification Area', false);
+  params.yearVis.forEach(function(y){
+    VisPasto.bands =  'classification_'+y;
+    Map.addLayer(Clasification, VisPasto,'Clasificación - Pastos - '+params.region+' - '+y, false);  
+  })
+  
+  
+  Map.addLayer(notPastureSamples, { color: '#ff0000' },'Train Samples - Non-Pasture');
+  Map.addLayer(pastureSamples, { color: '#f4f142' },'Train Samples - Pasture');
+  print('notPastureSamples',notPastureSamples.size())
+  print('pastureSamples',pastureSamples.size())
+  /*THE LAYERS BELOW HAS BEEN COMMENTED BECAUSE THE EARTH ENGINE PLATFORM CANNOT LOAD THE RESULTS OF
+  CLASSIFICATION, THUS CAUSING A COMPUTATION TIMED OUT ERROR***************************************/
+  
+  //Map.addLayer(pastureContinuousResult, pastureContinuousStyle, "Pasture Continuous Result",false);
+  //Map.addLayer(pastureResult, pastureStyle, "Pasture Result");
+}
+
+//Export the results of the classification
+var exportResults = function() {
+  
+  //'region':21001,
+  //  'year':2005, // año a ser analizado
+  //  'pais':'BOLIVIA',
+  var pastureContinuousFilename =  "Pasture_Continuous-" + params.pais +'-'+ params.region + '-' + year+'-'+params.versionOut;
+  var pastureFilename =  "Pasture-" + params.pais +'-'+ params.region + '-' +params.versionOut;
+  Clasification = Clasification.set({
+      'code_region': params.region,
+      'pais': params.pais,
+      'version': params.versionOut,
+      'RFtrees': rfNTrees,
+      'descripcion': 'clasificacion-v1 - mask AOI',
+      'paso': 'P01'
+    });
+  //'ExportarDrive':0, // 0 - No exportar Drive - 1  exportar Drive
+  //'ExportarAsset':1 // 0 - No exportar asset - 1  exportar asset 
+  if (params.ExportarDrive>0){
+    Export.image.toDrive({
+        image: Clasification.byte(),
+        description: pastureFilename+'_Drive',
+        fileNamePrefix: pastureFilename,
+        region: classificationArea,
+        scale: 30,
+        folder:'__Pasto',
+        maxPixels: 1.0E13
+    });
+    
+    Export.image.toDrive({
+        image: pastureContinuousResult.multiply(10000).int16(),
+        description: pastureContinuousFilename,
+        fileNamePrefix: pastureContinuousFilename,
+        region: classificationArea,
+        scale: 30,
+        folder:'__Pasto',
+        maxPixels: 1.0E13
+    });
+  }
+  if (params.ExportarAsset>0){
+    Clasification.set({
+      code_region: params.region,
+      pais: params.pais,
+      version: params.versionOut,
+      samples_version: params.versionOut,
+      descripcion: 'Class pasto mask AOI',
+      paso: 'P01'
+    });
+    Export.image.toAsset({
+        "image": Clasification.byte(),
+        "description": pastureFilename,
+        "assetId": assetOutputClass + "/" + pastureFilename,//
+        //"region": infoparams.geometry,
+        "region": classificationArea,
+        "scale": 30,
+        "maxPixels": 1e13,
+        "pyramidingPolicy": {
+            ".default": "mode"
+          },
+        });
+    
+  }
+}
+ 
+/********************************************************************/
+/**************** Classification Approach ****************************/
+/********************************************************************/
+//var classFieldName = 'cons_' + year; //Collum used as reference for classifier
+var classFieldName = 'reference'; //Collum used as reference for classifier
+
+var samplingArea = getSamplingArea()
+
+//var neighborhoodArea = getNeibArea()
+
+var classificationArea = getClassificationArea();
+
+var featureSpace;
+var Mosaico = ee.ImageCollection([])
+var trainSamples = getTrainSamples();
+
+var classifier;
+var pastureContinuousResult;
+
+var pastureResult;
+
+//var Clasification = ee.Image([]);
+var Clasification;
+var  Flg=true;
+
+years.forEach(function(y){
+  //print(y)
+  year = y;
+  featureSpace = getFeatureSpace();
+  
+  
+  classifier = getTrainedClassifier();
+  
+  pastureContinuousResult = classify();
+  
+  //pastureResult = pastureContinuousResult.gte(pastureMapThreshold);
+  pastureResult = pastureContinuousResult;
+  pastureResult = pastureResult.mask(pastureResult);
+  pastureResult = pastureResult.rename('classification_'+year)
+  if (Flg){
+    Clasification = pastureResult;
+    Flg=false;
+  }
+  else{
+    Clasification = Clasification.addBands(pastureResult)
+  }
+  Mosaico = Mosaico.merge(featureSpace.select(['swir1_wet_median']).multiply(0).add(1))
+})
+Map.addLayer(maskC3Estable,{palette:['#d2cccc','#0000FF'],min:0,max:1},'Mascara Estable Uso ',false)  
+print('featureSpace',featureSpace)
+var MosMask = featureSpace
+ 
+MosMask = Mosaico.sum().gte(years.length)
+
+//MosMask = MosMask.multiply(0)
+//MosMask = MosMask.reduce(ee.Reducer.sum()).add(1);
+  
+Map.addLayer(MosMask,{palette:['#d2cccc','#009900'],min:0,max:1},'Mascara Mosaicos ',false)    
+Clasification = Clasification.byte();
+Clasification = Clasification.mask(Clasification.gte(0))
+print('Resultado de la clasificacion',Clasification)
+addLayers();
+exportResults();
+
+print('Finalizó el script....')

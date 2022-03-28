@@ -1,0 +1,65 @@
+var countries = [
+  "BOLIVIA-2",
+  "COLOMBIA-2",
+  "ECUADOR-2",
+  "GUIANA-FRANCESA-2",
+  "GUYANA-2",
+  "PERU-2",
+  "SURINAME-2",
+  "VENEZUELA-2"
+];
+
+var paths = require('users/raisgmb01/MapBiomas_C3:MODULES/CollectionDirectories').paths;
+var paisesVector = ee.FeatureCollection("projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/paises-2");
+var regionesMosaicRaster = paths.regionMosRaster;
+var regionMosaicRaster = ee.Image(regionesMosaicRaster)
+var assetmosaics= paths.mosaics_c3_v2
+
+var images = countries.map(function(country){
+  return ee.Image('projects/mapbiomas-raisg/COLECCION3/INTEGRACION/integracion-pais/' + country);
+});
+
+var MosaicoCollection = ee.ImageCollection(assetmosaics)
+    //.filter(ee.Filter.inList('year',param.years))
+    //.filterMetadata('country', 'equals', param.pais)
+    .select(['swir1_median', 'nir_median', 'red_median'])
+    .map(
+        function (image) {
+            return image.updateMask(
+                regionMosaicRaster.eq(ee.Number.parse(image.get('region_code')).toInt16()));
+        }
+    );
+
+var collection3 = ee.ImageCollection(images).mosaic();
+var collection3Urban = collection3.eq(24).multiply(24).selfMask()
+// color palette
+var palette = require('users/mapbiomas/modules:Palettes.js').get('classification2');
+var vis = { min: 0, max:34, palette: palette };
+
+
+var years = ee.List.sequence(1985, 2020).getInfo();
+
+years.forEach(function(year) {
+  
+  Map.addLayer(MosaicoCollection.filterMetadata('year', 'equals', year),{
+  "bands":["swir1_median","nir_median","red_median"],
+  "min":200,"max":4100}, 'Mosaic' + year,false)
+  
+  // import yearly data for venezuela
+  var yearImage = collection3Urban.select('classification_' + year);
+  Map.addLayer(yearImage, vis, 'Col3_Urban-' + year, false);
+  
+});
+
+print(collection3Urban)
+
+Export.image.toDrive({
+    image: collection3Urban,
+    description: 'collection3-Urban' + '-DRIVE',
+    folder: 'collection3-Urban-c3-raisg',
+    scale: 30,
+    maxPixels: 1e13,
+    region: paisesVector.geometry().bounds()
+  });
+  
+  

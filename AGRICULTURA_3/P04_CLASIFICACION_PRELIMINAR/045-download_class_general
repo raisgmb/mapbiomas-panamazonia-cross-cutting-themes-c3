@@ -1,0 +1,362 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var Mustras_adicionales_01 = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.65826958107479, -18.81487028753453],
+                  [-64.65826958107479, -18.81487028753453],
+                  [-64.65826958107479, -18.81487028753453],
+                  [-64.65826958107479, -18.81487028753453]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.66114490913876, -18.814423442871867],
+                  [-64.66114490913876, -18.814423442871867],
+                  [-64.66114490913876, -18.814423442871867],
+                  [-64.66114490913876, -18.814423442871867]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.65552462148516, -18.810562744684866],
+                  [-64.65552462148516, -18.81641238786353],
+                  [-64.64891565847246, -18.81641238786353],
+                  [-64.64891565847246, -18.810562744684866]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.66848505544512, -18.811375207293228],
+                  [-64.66848505544512, -18.814706262954772],
+                  [-64.66402185964434, -18.814706262954772],
+                  [-64.66402185964434, -18.811375207293228]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.67303408193438, -18.819418375343847],
+                  [-64.67303408193438, -18.822180586723174],
+                  [-64.66831339406816, -18.822180586723174],
+                  [-64.66831339406816, -18.819418375343847]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.6623052458748, -18.82234306833203],
+                  [-64.6623052458748, -18.82356167539198],
+                  [-64.65955866384355, -18.82356167539198],
+                  [-64.65955866384355, -18.82234306833203]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "5"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.67432154226152, -18.816331144212796],
+                  [-64.67432154226152, -18.816737362073948],
+                  [-64.67303408193438, -18.816737362073948],
+                  [-64.67303408193438, -18.816331144212796]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 1985,
+              "PFin": 2020,
+              "system:index": "6"
+            })]),
+    Mustras_adicionales_02 = 
+    /* color: #98ff00 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.64247835683672, -18.816168656793536],
+                  [-64.64247835683672, -18.821936864015434],
+                  [-64.63818682241289, -18.821936864015434],
+                  [-64.63818682241289, -18.816168656793536]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.63827265310137, -18.811700191237712],
+                  [-64.63827265310137, -18.814218795515707],
+                  [-64.63209284353105, -18.814218795515707],
+                  [-64.63209284353105, -18.811700191237712]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.62883127736895, -18.818768436658747],
+                  [-64.62883127736895, -18.820230795166843],
+                  [-64.62659967946855, -18.820230795166843],
+                  [-64.62659967946855, -18.818768436658747]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.65106142568438, -18.82380539574377],
+                  [-64.65106142568438, -18.824455314954104],
+                  [-64.64857233571855, -18.824455314954104],
+                  [-64.64857233571855, -18.82380539574377]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-64.63638437795488, -18.822586790450796],
+                  [-64.63638437795488, -18.823886635782497],
+                  [-64.63209284353105, -18.823886635782497],
+                  [-64.63209284353105, -18.822586790450796]]], null, false),
+            {
+              "reference": 1,
+              "PIni": 2015,
+              "PFin": 2020,
+              "system:index": "4"
+            })]),
+    Mustras_adicionales_03 = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-61.81018341930901, 7.8258215789057335],
+                  [-61.77859772594964, 7.835004859297531],
+                  [-61.770701302609794, 7.852010399110267],
+                  [-61.78134430798089, 7.86051290809632],
+                  [-61.798167122922294, 7.850649981519776],
+                  [-61.806406869016044, 7.845548375894414],
+                  [-61.81773651989495, 7.840446707676397]]]),
+            {
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-61.80194367321526, 7.889080061311317],
+                  [-61.800913704953544, 7.933967312079818],
+                  [-61.83490265759026, 7.919345486937689],
+                  [-61.85275544079339, 7.9064234419329535],
+                  [-61.85721863659417, 7.897241742908134],
+                  [-61.822886361203544, 7.8918006397520335]]]),
+            {
+              "system:index": "1"
+            })]),
+    geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-65.04576210575466, -17.59757946239],
+          [-65.04576210575466, -19.20291117519659],
+          [-64.27671913700466, -19.20291117519659],
+          [-64.27671913700466, -17.59757946239]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+/** 
+ * PASO 4.5: Descargar restultado de la clasificación general con algunas clases 
+ * SEPTIEMBRE 2020
+ * DOCUMENTACIÓN: https://docs.google.com/document/d/1V1_kj6idnTzLslsXFC11EbU-qGcwhsHBWQTgRLR9QEw/edit#
+ * M3v2 - toma en cuenta los mosaicos de unidos de la colección 3
+ * MA - que tiene la capacidad de tomar muestras adicionales
+ * estas muestras también permite modificar el periodo de tiempo 
+ * Mascara - Utiliza geometrias guardadas en asset o dibujadas en GEE para definir un área nueva 
+ * ----------------------------------------------------------------------------------------------
+ */  
+
+var param = {
+  regionId: 70301,
+  gridName: '',
+  driveFolder:'RAISG-COL3',
+  inputVersion: 6, // v6 Paso 11
+  assetCG:'projects/mapbiomas-raisg/COLECCION3/clasificacion-ft/',
+  year: 2015, // año para descargar, solo se selecciona un año  
+  clases:[11,12] // Clases que se quedará de la clasificación general 
+  
+};
+
+/**
+ * ----------------------------------------------------------------------------------------------
+ * INICIALIZACIÓN DE LA APLICACsampling_03IÓN
+ * Self invoked expresion que ejecuta el paso 4 de la metodología
+ * ----------------------------------------------------------------------------------------------
+ */
+
+(function init(param) {
+  
+  var assets = {
+    grids: 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/cartas-mapbiomas-3',
+    regions: 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/clasificacion-regiones-3',
+    mosaics: 'projects/mapbiomas-raisg/MOSAICOS/',
+    //trainingSamples: 'projects/mapbiomas-raisg/MUESTRAS/COLECCION3/PUNTOS_ESTABLES/',
+    trainingSamples: 'projects/mapbiomas-raisg/MUESTRAS/COLECCION3/TRANSVERSALES/AGRICULTURA/',
+    outputs: 'projects/mapbiomas-raisg/MUESTRAS/COLECCION3/PUNTOS_ESTABLES/',
+  };
+  
+  
+  // Crear máscara con base en el vector de región y carta
+  
+  
+  var region = getRegion(
+    assets.regions, assets.grids, param.regionId, param.gridName);
+  
+  var regionMask = region
+
+
+  var country = region.vector.first().get('pais').getInfo()
+    .toUpperCase()
+    .replace('Ú', 'U')
+    .replace(' ', '_');
+  //BOLIVIA-20101-1  
+  var NomImg = country+'-'+param.regionId+'-'+param.inputVersion;
+  
+  var ClassGeneral = ee.Image(param.assetCG+NomImg)
+  ClassGeneral = ClassGeneral.select('classification_'+param.year)
+ 
+  print(ClassGeneral)
+  
+  var ImgTemp = ClassGeneral.multiply(0)
+  var Nclases='';
+  param.clases.forEach(function(Class){
+    ImgTemp = ImgTemp.where(ClassGeneral.eq(Class),Class)
+    Nclases = Nclases+'_C'+Class
+  })
+  
+  ClassGeneral = ImgTemp.mask(ImgTemp.gt(0));
+  
+  Map.addLayer(ClassGeneral,
+  {
+        min: 0,
+        max: 34,
+        palette: PALETTE()
+      },
+  NomImg+'-'+param.year)
+  
+  Export.image.toDrive({
+    image: ClassGeneral.toInt8(),
+    description: NomImg + '-DRIVE'+Nclases,
+    folder: param.driveFolder,
+    scale: 30,
+    maxPixels: 1e13,
+    region: region.vector.geometry().bounds()
+  });
+  
+})(param);  
+
+
+
+function setVersion(item) { return item.set('version', 1) }
+
+function getRegion(regionPath, gridPath, regionId, gridName){
+  
+  var region = ee.FeatureCollection(regionPath)
+        .filterMetadata("id_regionC", "equals", regionId);
+  
+  if(gridName && gridName !== '') {
+    var grid = ee.FeatureCollection(gridPath)
+      .filterMetadata("name", "equals", gridName)
+      .first();
+      
+    grid = grid.set('pais', region.first().get('pais'));
+    
+    region = ee.FeatureCollection(ee.Feature(grid));
+  } 
+  else region = region;
+  
+  var regionMask = region
+    .map(setVersion)
+    .reduceToImage(['version'], ee.Reducer.first());
+    
+  return {
+    vector: region,
+    rasterMask: regionMask
+  };
+
+}
+
+function PALETTE() {
+  return [
+    'ffffff', 'FF0000', 'e2c539', '006400', '00ff00', '687537', '76a5af',
+    '29eee4', '77a605', '935132', 'bbfcac', '45c2a5', 'b8af4f', 'f1c232', 
+    'ffffb2', 'ffd966', 'f6b26b', 'f99f40', 'e974ed', 'd5a6bd', 'c27ba0',
+    'fff3bf', 'ea9999', 'dd7e6b', 'aa0000', 'ff99ff', '0000ff', 'd5d5e5',
+    'dd497f', 'b2ae7c', 'af2a2a', '8a2be2', '968c46', '0000ff', '4fd3ff'
+  ];
+}

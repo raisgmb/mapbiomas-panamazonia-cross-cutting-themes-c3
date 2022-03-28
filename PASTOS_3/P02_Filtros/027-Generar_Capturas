@@ -1,0 +1,259 @@
+/**
+ * Generar capturas del trasnversal pastos 
+ * 
+ *  
+ * */
+var param = {
+  regionId:21001,
+  pais:'BOLIVIA',
+  VersionTP:5, // Versión del tranversal que se quiere revisar
+  VersionC3:9, // Versión de la colección 3 
+  yearVis: [2018] // años que se visualizarán, cada año genrará 2 ventanas
+};
+
+
+
+var assets = {
+    grids: 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/cartas-mapbiomas-3',
+    regions: 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/clasificacion-regiones-3',
+    mosaics: 'projects/mapbiomas-raisg/MOSAICOS/',
+    Inputs: "projects/mapbiomas-raisg/TRANSVERSALES/PASTOS_3/clasificacion/",
+    InputsFT: "projects/mapbiomas-raisg/TRANSVERSALES/PASTOS_3/clasificacion-ft/",
+    InputsCol2: 'projects/mapbiomas-raisg/public/collection2/mapbiomas_raisg_panamazonia_collection2_integration_v2',
+    InputsCol3: 'projects/mapbiomas-raisg/COLECCION3/clasificacion-ft/'
+  };
+
+
+//projects/mapbiomas-raisg/TRANSVERSALES/ANDES
+//var asset = "users/rcamargo/Andes/MOSAICOS/workspace-c1";  
+var zoom = 5;
+
+
+ if (param.VersionCol3===1 || param.VersionCol3===3){
+    assets.InputsCol3 = 'projects/mapbiomas-raisg/COLECCION3/clasificacion/'
+  }
+  if (param.VersionTP>1 ){
+    assets.Inputs = assets.InputsFT
+  }
+  
+  // Crear máscara con base en el vector de región y carta
+  var region = getRegion(
+    assets.regions, assets.grids, param.regionId, param.gridName);
+  
+  var country = region.first().get('pais').getInfo()
+    .toUpperCase()
+    .replace('Ú', 'U')
+   .replace(' ', '_');
+
+
+  // Importar assets con base en la región
+  var assetsMosaics = [
+    assets.mosaics + 'workspace-c3-v2', 
+    //assets.mosaics + 'workspace-c3-v2'
+  ];
+  
+
+
+ 
+  // Generar el análisis de variables y la clasificación
+  var regionId = param.regionId;
+  
+  if(param.gridName !== undefined && param.gridName !== '')
+    regionId = regionId + '-' + param.gridName;
+
+  
+  // Generar la clasificación
+  var classificationP;
+  
+  var classificationCol2 = ee.Image(assets.InputsCol2).clip(region)
+  
+  
+  var filename = country + '-' + regionId + '-' + param.VersionTP
+      
+
+  if (param.VersionTP===1 ){
+    filename = 'Pasture-'+filename
+  }
+  var imageId = assets.Inputs + filename;
+  classificationP =ee.Image(imageId)
+  
+    
+  var filenameC3 = country + '-' + regionId + '-' + param.VersionC3,
+      imageId = assets.InputsCol3 + filenameC3;
+  
+  var classificationCol3 =ee.Image(imageId)
+  
+  
+var vis = [{
+    "bands": 'swir1_median,nir_median,red_median',
+    "gain": '0.08,0.06,0.2',
+    //"gamma": '0.5',
+    "format": "png"
+}, {
+    "bands": 'classification',
+      "min": 0,
+      "max": 34,
+      /*"palette": "d5d5e5,129912,1f4423,006400,00ff00," +
+          "687537,76a5af,29eee4,77a605,935132,ff9966,45c2a5," +
+          "b8af4f,f1c232,ffffb2,ffd966,f6b26b,a0d0de," +
+          "e974ed,d5a6bd,c27ba0,FBF3C7,ea9999," +
+          "dd7e6b,ff2828,ff99ff," +
+          "0000ff,d5d5e5,ce3d3d,ce3d3d,ce3d3d,ce3d3d,ce3d3d,ce3d3d,21cbff",
+      */
+     "palette": PALETTE(),
+      "format": "png"
+}];
+
+var maps = [],
+    map,
+    mapa;
+var mosaic = mosaic = getMosaic(
+    assetsMosaics, param.regionId, param.variables, param.gridName);
+var MosaicRGB;
+var empty,
+    outline;  
+for (var i = 0; i < param.yearVis.length; i++) {
+    //añadimos el mosaico 
+    MosaicRGB = mosaic.filterMetadata('year','equals',param.yearVis[i])
+                .mosaic()
+                .clip(region)
+    map = ui.Map();
+    map.add(ui.Label(String(param.yearVis[i]), {
+        'position': 'bottom-left',
+        'fontWeight': 'bold'
+    }));
+    vis[1].bands = 'classification_'+param.yearVis[i]
+    map.addLayer(MosaicRGB, vis[0], 'Mosaico '+String(param.yearVis[i]));
+    map.addLayer(classificationCol2, vis[1], 'Col2 '+String(param.yearVis[i]),false);
+    map.addLayer(classificationCol3, vis[1], 'Col3 '+String(param.yearVis[i]),false);
+    map.centerObject(mosaic,zoom)
+    maps.push(map);
+    
+    // añadimos la clasificación
+    map = ui.Map();
+    map.add(ui.Label(String(param.yearVis[i]), {
+        'position': 'bottom-left',
+        'fontWeight': 'bold'
+    }));
+    empty = ee.Image().byte();
+    outline = empty.paint({
+          featureCollection: region,
+          color: 1,
+          width: 1.5
+      });
+    map.addLayer(outline, {
+            'palette': '#000000'
+        },
+        'Region',true
+    );
+    map.addLayer(classificationP, vis[1], 'Pastos '+String(param.yearVis[i]));
+    map.centerObject(classificationP,zoom)
+    maps.push(map);
+}
+
+// blank map
+maps.push(ui.Map());
+
+var linker = ui.Map.Linker(maps);
+
+// Create a title.
+var title = ui.Label('Trasnversal pastos (c18) - '+param.pais, {
+    stretch: 'horizontal',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: '24px',
+
+});
+
+// Create a grid of maps.
+var cont=0;
+var mapGrid =[]
+
+param.yearVis.forEach(function(y){
+   mapGrid.push(
+    ui.Panel([maps[cont],maps[cont+1]],
+            ui.Panel.Layout.Flow('horizontal'), {
+                stretch: 'both'
+            }) 
+     )
+    cont = cont+2 
+})
+
+mapGrid = ui.Panel(mapGrid,
+    ui.Panel.Layout.Flow('vertical'), {
+        stretch: 'both'
+    }) 
+
+//*******************************************
+// funciones
+function getRegion(regionPath, gridPath, regionId, gridName){
+  
+  var region = ee.FeatureCollection(regionPath)
+        .filterMetadata("id_regionC", "equals", regionId);
+  
+  if(gridName && gridName !== '') {
+    var grid = ee.FeatureCollection(gridPath)
+      .filterMetadata("name", "equals", gridName)
+      .first();
+      
+    grid = grid.set('pais', region.first().get('pais'));
+    
+    region = ee.FeatureCollection(ee.Feature(grid));
+  } 
+  else region = region;
+  
+  
+    
+  return region
+
+}
+function getMosaic(paths, regionId, variables, gridName,regionVector) {
+  
+  
+  // Gestionar mosaicos Landsat
+  var mosaicRegion = regionId.toString().slice(0, 3);
+  
+  var mosaics = paths.map( function(path) {
+    
+    var mosaic = ee.ImageCollection(path)
+      .filterMetadata('region_code', 'equals', mosaicRegion)
+      .map(function(image) {
+        var index = ee.String(image.get('system:index')).slice(0, -3);
+        return image.set('index', index);
+      });
+    
+    if(gridName && gridName !== '')
+      mosaic = mosaic
+        .filterMetadata('grid_name', 'equals', gridName);
+    else
+      mosaic = mosaic;
+    
+    if(mosaic.size().getInfo() !== 0) return mosaic;
+    
+  });
+  
+  
+  mosaics = mosaics.filter( function(m) { return m !== undefined });
+  
+  return mosaics[0]
+
+}
+function PALETTE() {
+  return [
+    'ffffff', 'FF0000', 'e2c539', '006400', '00ff00', '687537', '76a5af',
+    '29eee4', '77a605', '935132', 'bbfcac', '45c2a5', 'b8af4f', 'f1c232', 
+    'ffffb2', 'ffd966', 'f6b26b', 'f99f40', 'e974ed', 'd5a6bd', 'c27ba0',
+    'fff3bf', 'ea9999', 'dd7e6b', 'aa0000', 'ff99ff', '0000ff', 'd5d5e5',
+    'dd497f', 'b2ae7c', 'af2a2a', '8a2be2', '968c46', '0000ff', '4fd3ff'
+  ];
+}
+//*******************************************
+
+
+// Add the maps and title to the ui.root.
+ui.root.widgets().reset([title, mapGrid]);
+ui.root.setLayout(ui.Panel.Layout.Flow('vertical'));
+
+//maps[0].setCenter(-62.4, -6.14, 3);
+print('------')
+

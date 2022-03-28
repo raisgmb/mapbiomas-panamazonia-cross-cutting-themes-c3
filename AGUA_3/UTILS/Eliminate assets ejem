@@ -1,0 +1,25 @@
+var asset = "projects/mapbiomas-raisg/TRANSVERSALES/AGUA_3/clasificacion-ft"
+var urbanocoll = ee.ImageCollection(asset);
+print(urbanocoll)
+var list = [
+            // 70209,
+            // 70108,
+            40101,40102,40103,40104,40105,
+            40201,40202,40203,40204,40205,
+            40601,40602
+            ]
+print(list)
+var eliminate = urbanocoll.filter(ee.Filter.inList('code_region', list))
+print(eliminate)
+var list_eliminate = eliminate.reduceColumns(ee.Reducer.toList(), ['system:index']).get('list').getInfo();
+print('list_eliminate',list_eliminate)
+
+list_eliminate.forEach(
+function (imageName) {
+      print(imageName)
+      var asset1 = asset +'/'+ imageName
+      print(asset1)
+      // ee.data.deleteAsset(asset1)
+       
+    }
+)

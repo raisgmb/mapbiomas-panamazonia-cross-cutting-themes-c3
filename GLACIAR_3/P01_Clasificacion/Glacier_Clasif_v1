@@ -1,0 +1,113 @@
+// TEMA TRANSVERSAL GLACIARES
+
+var params = {
+    'regionGlacier': 7031,
+    // 'cloud_cover': 70,
+    'pais': 'PERU', // Options: 'Perú', 'Bolivia', 'Colombia', 'Ecuador'...
+    'shadowSum':3500,
+    'version':1
+};
+
+var tree = {
+  ndsi_min:115,  //mayor o igual a 140
+  ndwimf_median:140,  //menor o igual a
+  frec_ndsi: 1  //frecuencias de ndsi>n mayor o igua a 
+}
+
+var YearsSensors =  [
+              [1985,'l5',70], 
+              [1986,'l5',70], [1987,'l5',70], [1988,'l5',70], [1989,'l5',70], [1990,'l5',70], 
+              [1991,'l5',70], [1992,'l5',70], [1993,'l5',70], [1994,'l5',70], [1995,'l5',70], 
+              [1996,'l5',70], [1997,'l5',70], [1998,'l5',70], [1999,'l5',70], [2000,'l5',70], 
+              [2001,'l5',70], [2002,'l5',70], [2003,'l5',70], [2004,'l5',70], [2005,'l5',70], 
+              [2006,'l5',70], [2007,'l5',70], [2008,'l5',70], [2009,'l5',70], [2010,'l5',70], 
+              [2011,'l5',70], [2012,'lx',70], [2013,'l8',70], [2014,'l8',70], [2015,'l8',70], 
+              [2016,'l8',70], [2017,'l8',70], [2018,'l8',70], [2019,'l8',70], [2020,'l8',70]
+             ]
+             
+
+/**
+* Importa geometria: carta y region
+*/
+ 
+var AssetRegions = 'projects/mapbiomas-raisg/DATOS_AUXILIARES/VECTORES/clasificacion-regiones-glacier-3';
+var AssetRegionsRaster = 'projects/mapbiomas-raisg/DATOS_AUXILIARES/RASTERS/clasificacion-regiones-glacier-3';
+
+var region = ee.FeatureCollection(AssetRegions).filterMetadata('id_regionC', 'equals', params.regionGlacier)
+var regionRaster = ee.Image(AssetRegionsRaster).eq(params.regionGlacier).selfMask()
+
+Map.centerObject(region, 10);
+Map.addLayer(
+    region.style({ fillColor: '000000', color: '00000000'}), 
+    {}, 'Background'
+);
+
+/**
+* Importa el modulo 'GetImages' para la obtención de los mosaicos
+*/
+var getImages = require('users/raisgmb01/MapBiomas_C3_Transv:GLACIAR_3/modules/GetImages.js');
+
+//var Clasification = ee.Image();
+YearsSensors.forEach(
+  function(yearsensor) {
+    
+    var param = {
+    // 'grid_name': params.grid_name,
+    't0': yearsensor[0]+'-01-01',
+    't1': yearsensor[0]+'-12-31',
+    'satellite': yearsensor[1],
+    'cloud_cover': yearsensor[2],
+    'pais': params.pais,
+    'regionMosaic': params.regionGlacier,
+    'shadowSum':params.shadowSum
+    };
+  var ImagesYear = getImages.getImages(param,[],region);
+    // print('Mosaic:'+yearsensor[0], Mosaic);
+  var Mosaic = ImagesYear[0].updateMask(regionRaster);
+  var Collection = ImagesYear[1];
+  print('# imagenes:'+yearsensor[0], Collection.size())
+    Map.addLayer(Mosaic, {
+          bands: 'swir1_median_dry,nir_median_dry,red_median_dry',
+          min:300,
+          max:5000
+      },'Mosaic-'+yearsensor[0], false)
+  var CountBandData = Collection.select('ndsi').map(function(image){return image.gte(tree.ndsi_min).selfMask()}).count().updateMask(regionRaster)
+  var Glacier = Mosaic.select('ndsi_min').gte(tree.ndsi_min).and(Mosaic.select('ndwimf_median').lte(tree.ndwimf_median))
+                              .and(CountBandData.gte(tree.frec_ndsi))
+                              .multiply(34)
+                              .updateMask(regionRaster).selfMask()
+                              
+  Map.addLayer(CountBandData,{min:1, max:25, palette:'ff3000,fff90e,54ff1e,25a4ff,291aff'},'CountBandData',false)
+  Map.addLayer(Glacier,{palette: ['red']},'glacier_prop',false)
+  var Clasification = Glacier.rename('classification') //Clasification.addBands(Glacier.rename('clasification'+yearsensor[0]))
+  
+  Export.image.toAsset({
+    image: Clasification.toInt8().set('region', params.regionGlacier)
+                                 .set('year', yearsensor[0]),
+    description:'Glacier'+params.regionGlacier + '-'+ yearsensor[0] + '-'+ params.version,
+    assetId:'projects/mapbiomas-raisg/TRANSVERSALES/GLACIAR_3/clasificacion/'+ 'Glacier'+params.regionGlacier+ '-' + yearsensor[0]+ '-'+ params.version,
+    scale: 30,
+    pyramidingPolicy: {
+      '.default': 'mode'
+    },
+    maxPixels: 1e13,
+    region: region.geometry().bounds()
+  });
+  
+  } )
+
+
+/**
+* Despliega en el mapa los mosaicos y polígonos necesarios
+* para la visualización
+*/
+//print(Clasification)
+
+
+
+Map.addLayer(
+    region.style({ fillColor: '#ff000000', color: 'f59e42'}),
+    {}, 'Regions ' + params.pais, false
+);
+
+

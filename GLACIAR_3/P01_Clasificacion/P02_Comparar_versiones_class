@@ -1,0 +1,45 @@
+var param = {
+    regionId: 7035,
+   }
+
+// input
+var AssetGlacierClass = "projects/mapbiomas-raisg/TRANSVERSALES/GLACIAR_3/clasificacion"
+var AssetMosaic='projects/mapbiomas-raisg/MOSAICOS/workspace-c2-v2'
+
+var mosaicRegion = param.regionId.toString().slice(0, 3);
+var mosaic = ee.ImageCollection(AssetMosaic)
+            .filterMetadata('region_code', 'equals', mosaicRegion)
+            .select(['swir1_median', 'nir_median', 'red_median']);
+            
+var Coll_Clasif = ee.ImageCollection(AssetGlacierClass)
+                      .filterMetadata('region', 'equals', param.regionId)
+                      .map(function(image){
+                        var version = ee.String(image.get('system:index')).slice(-1)
+                        return image.set('version', version)
+                      })
+print(Coll_Clasif)
+Map.centerObject(Coll_Clasif,10)
+
+var years = [
+    1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+    1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 
+    2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
+    2018, 2019, 2020
+    ];
+    
+years.forEach(function(year){
+  var Glacier = Coll_Clasif.filterMetadata('year', 'equals', year)
+  
+  Map.addLayer(mosaic.filterMetadata('year', 'equals', year).mosaic(), {
+      'bands': ['swir1_median', 'nir_median', 'red_median'],
+      'gain': [0.08, 0.06, 0.08],
+      'gamma': 0.65
+  }, 'mosaic-'+year, false);
+  
+  Map.addLayer(Glacier.filterMetadata('version', 'equals', '1').mosaic(),
+               {palette: ['ff0000']},'glacier-'+year+'-v1',false)
+  Map.addLayer(Glacier.filterMetadata('version', 'equals', '2').mosaic(),
+               {palette: ['040cff']},'glacier-'+year+'-v2',false)
+})
+
+

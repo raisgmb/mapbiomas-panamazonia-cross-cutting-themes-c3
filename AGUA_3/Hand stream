@@ -1,0 +1,45 @@
+var paths = require('users/raisgmb01/MapBiomas_C3:MODULES/CollectionDirectories').paths;
+var dirout  = paths.clasificacionFiltros
+var dirinput = paths.clasificacionFiltros
+var regionesclass = paths.regionVector
+var regionesclassRaster = paths.regionCRaster
+var AssetMosaic= paths.mosaics_c3_v2
+
+var mosaic = ee.ImageCollection(AssetMosaic)
+            // .filterMetadata('region_code', 'equals', mosaicRegion)
+            .select(['swir1_median', 'nir_median', 'red_median']);
+
+Map.addLayer(mosaic.filterMetadata('year', 'equals', 2019)
+                     .mosaic(), {
+        'bands': ['swir1_median', 'nir_median', 'red_median'],
+        'gain': [0.08, 0.06, 0.08],
+        'gamma': 0.65
+    }, 'mosaic-2019', false)
+    
+var HS_fa = ee.Image("WWF/HydroSHEDS/15ACC")
+var palette_fa = ['deebf7', '9ecae1', '3182bd']
+Map.addLayer(HS_fa.mask(HS_fa.gt(100)), {min:100, max: 1000, palette: palette_fa}, 'flow accumulation (HS 450m)', false)
+
+var dist_buffer = 500
+var fa = ee.Image("users/gena/GlobalHAND/90m-global/fa")
+fa = fa.mask(fa.gt(1000))
+
+var rios_princ = fa.updateMask(fa.lte(100000))
+
+var palette_fa = ['08ffff','02ff50','fff80e','ffc800','ff7a08','ff3e04','c60202','000000']
+
+
+var OSM_buffer = ee.Image(1)
+    .cumulativeCost({
+      source: fa, 
+      maxDistance: dist_buffer,
+    }).lt(dist_buffer);
+
+OSM_buffer = ee.Image(0).where(OSM_buffer.eq(1), 1)
+    
+    
+Map.addLayer(OSM_buffer)
+Map.addLayer(rios_princ, {min:1000, max: 100000, palette: palette_fa}, 'flow accumulation', false)
+Map.addLayer(fa, {min:1000, max: 100000, palette: palette_fa}, 'flow accumulation', false)
+
+
